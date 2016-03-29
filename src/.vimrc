@@ -90,7 +90,7 @@ call vundle#begin()
  Plugin 'scrooloose/NERDTree'
  Plugin 'scrooloose/NERDCommenter'
  Plugin 'scrooloose/syntastic'
- Plugin 'Tabular'
+ " Plugin 'Tabular'
  Plugin 'pangloss/vim-javascript'
  Plugin 'mxw/vim-jsx'
  Plugin 'leafgarland/typescript-vim'

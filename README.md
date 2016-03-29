@@ -4,5 +4,5 @@ curl -sSL https://raw.githubusercontent.com/antoinegergy/dotfiles/master/install
 ```
 or:
 ```
-   wget -qO- https://raw.githubusercontent.com/antoinegergy/dotfiles/master/install.sh | sh
+wget -qO- https://raw.githubusercontent.com/antoinegergy/dotfiles/master/install.sh | sh
 ```

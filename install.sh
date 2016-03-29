@@ -4,7 +4,7 @@
 #   or:
 #   'wget -qO- https://raw.githubusercontent.com/antoinegergy/dotfiles/master/install.sh | sh'
 #
-set +x
+set -x
 
 PACKAGES="vim \
 	git \

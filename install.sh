@@ -28,7 +28,7 @@ git pull origin master
 rsync   --exclude ".git/" \
 	--exclude ".DS_Store" \
 	--exclude "install.sh" \
-	--exclude "README.md" -avh --no-perms src $HOME;
+	--exclude "README.md" -avh --no-perms src/ $HOME;
 
 mkdir -p  ~/.vim/bundle/
 rm -Rf $HOME/.vim/bundle/Vundle.vim

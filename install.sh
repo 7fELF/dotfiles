@@ -9,7 +9,8 @@ set +x
 PACKAGES="vim \
 	git \
 	rsync \
-	zsh \
+    python \
+    zsh \
 	htop \
 	zip unzip gzip tar\
 	tmux \

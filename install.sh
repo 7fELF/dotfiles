@@ -1,5 +1,11 @@
 #!/bin/sh
+#
+#   'curl -sSL https://raw.githubusercontent.com/antoinegergy/dotfiles/master/install.sh | sh'
+#   or:
+#   'wget -qO- https://raw.githubusercontent.com/antoinegergy/dotfiles/master/install.sh | sh'
+#
 set +x
+
 PACKAGES="vim \
 	git \
 	rsync \
@@ -23,14 +29,9 @@ then
 fi
 fi
 
-git pull origin master
-
-rsync   --exclude ".git/" \
-	--exclude ".DS_Store" \
-	--exclude "install.sh" \
-	--exclude "README.md" -avh --no-perms src/ $HOME;
-
-mkdir -p  ~/.vim/bundle/
-rm -Rf $HOME/.vim/bundle/Vundle.vim
-git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
+cd /tmp
+git clone https://github.com/antoinegergy/dotfiles.git
+cd dotfiles
+./run.sh
+cd $HOME
+rm -rf /tmp/dotfiles

@@ -98,6 +98,7 @@ call vundle#begin()
  Plugin 'ternjs/tern_for_vim'
  " non github repos
  " Plugin 'git://git.wincent.com/command-t.git'
+ Plugin 'fatih/vim-go'
  " ...
 call vundle#end()            " required
 filetype plugin indent on     " required!

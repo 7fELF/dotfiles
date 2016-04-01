@@ -16,17 +16,23 @@ PACKAGES="vim \
 	tmux \
 	wget curl"
 
+if [ "$(id -u)" != "0" ]; then
+    SUDO='sudo'
+else
+    SUDO=''
+fi
+
 if A="$( which apt-get )" 2> /dev/null;
 then
 	echo "Debian based, installing packages"
-	sudo apt-get update && \ 
-	sudo apt-get install -y $PACKAGES && \ 
-	sudo apt-get -y autoremove
+	$SUDO apt-get update && \ 
+	$SUDO apt-get install -y $PACKAGES && \ 
+	$SUDO apt-get -y autoremove
 else if A="$( which pacman )" 2> /dev/null;
 then
 	echo "Arch based, installing packages"
-	sudo pacman -Syy && \ 
-	sudo pacman -Syy $PACKAGES
+	$SUDO pacman -Syy && \ 
+	$SUDO pacman -Syy $PACKAGES
 fi
 fi
 

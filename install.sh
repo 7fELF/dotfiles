@@ -1,4 +1,4 @@
-#!/bin/sh
+#/bin/sh
 #
 #   'curl -sSL https://raw.githubusercontent.com/antoinegergy/dotfiles/master/install.sh | sh'
 #   or:
@@ -10,10 +10,12 @@ PACKAGES="vim \
 	git \
 	rsync \
     python \
+    python-pip \
     zsh \
 	htop \
 	zip unzip gzip tar\
 	tmux \
+	httpie \
 	wget curl"
 
 if [ "$(id -u)" != "0" ]; then
@@ -24,21 +26,17 @@ fi
 
 if A="$( which apt-get )" 2> /dev/null;
 then
-	echo "Debian based, installing packages"
-	$SUDO apt-get update && \ 
-	$SUDO apt-get install -y $PACKAGES && \ 
+	echo "Installing packages"
+	$SUDO apt-get update && \
+	$SUDO apt-get install -y $PACKAGES && \
 	$SUDO apt-get -y autoremove
-else if A="$( which pacman )" 2> /dev/null;
-then
-	echo "Arch based, installing packages"
-	$SUDO pacman -Syy && \ 
-	$SUDO pacman -Syy $PACKAGES
-fi
+    echo "Installin oh-my-zsh"
+    wget -qO- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+else
+    echo "Can't install packages without apt"
 fi
 
-cd /tmp
+cd $HOME
 git clone https://github.com/antoinegergy/dotfiles.git
 cd dotfiles
 ./run.sh
-cd $HOME
-rm -rf /tmp/dotfiles

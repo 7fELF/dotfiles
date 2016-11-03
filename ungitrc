@@ -1,0 +1,11 @@
+{
+    "launchBrowser": false,
+        "port": 8080,
+        "authentication": true,
+        "users": {
+            "antoine": "changeme"
+        },
+        "bugtracking": false,
+        "sendUsageStatistics": true
+}
+

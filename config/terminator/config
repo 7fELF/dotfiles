@@ -17,6 +17,7 @@
   [[default]]
     background_color = "#141312"
     background_darkness = 1.11
+    background_image = None
     cursor_blink = False
     cursor_color = "#4c4c4c"
     font = Source Code Pro for Powerline Medium 11

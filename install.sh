@@ -9,8 +9,6 @@ set -x
 PACKAGES="vim \
 	git \
 	rsync \
-    python \
-    python-pip \
     zsh \
 	htop \
 	zip unzip gzip tar\
@@ -18,7 +16,8 @@ PACKAGES="vim \
 	httpie \
 	wget curl"
 
-if [ "$(id -u)" != "0" ]; then
+if [ "$(id -u)" != "0" ];
+then
     SUDO='sudo'
 else
     SUDO=''
@@ -26,10 +25,9 @@ fi
 
 if A="$( which apt-get )" 2> /dev/null;
 then
-	echo "Installing packages"
-	$SUDO apt-get update && \
-	$SUDO apt-get install -y $PACKAGES && \
-	$SUDO apt-get -y autoremove
+    echo "Installing packages"
+    $SUDO apt-get update && \
+	$SUDO apt-get install -y $PACKAGES
     echo "Installin oh-my-zsh"
     wget -qO- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 else

@@ -1,1 +1,3 @@
-/vim/bundle/*
+/vim/*
+!/vim/colors
+!/vim/plugin

@@ -3,12 +3,15 @@
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="agnoster"
+ZSH_CUSTOM="$HOME/dotfiles/zsh_custom"
+DEFAULT_USER="$USER"
 
 alias composer='docker run --rm -u $UID:$GID -v $(pwd):/app composer/composer'
 alias php='docker run --rm -ti php:7'
 alias cleanup_docker='docker ps -aq | xargs docker rm'
 alias cleanup_docker_images='docker rmi $(docker images --quiet --filter "dangling=true")'
 alias p='while [ 1 ]; do ping -c 25 8.8.8.8 && clear || sleep 1 || break; done;'
+alias diff='git diff --no-index'
 
 # Epitech
 alias blih='blih -u baudra_a'
@@ -76,10 +79,6 @@ source $ZSH/oh-my-zsh.sh
 
 export NVM_DIR="/root/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-export LD_LIBRARY_PATH="$HOME/.froot/lib/"
-export C_INCLUDE_PATH="$HOME/.froot/include/"
-export CPLUS_INCLUDE_PATH="$HOME/.froot/include/"
 
 echo -e '\033]50;xft:Input-10\007'
 

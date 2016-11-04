@@ -12,7 +12,7 @@ ln -sf $DOTFILES_FOLDER/vim              $HOME/.vim
 ln -sf $DOTFILES_FOLDER/selected_editor  $HOME/.selected_editor
 
 mkdir -p $HOME/.config/terminator/
-ln -sf $DOTFILES_FOLDER/config/terminator    $HOME/.config/terminator/config
+ln -sf $DOTFILES_FOLDER/config/terminator/config $HOME/.config/terminator/config
 
 mkdir -p  ~/.vim/bundle/
 rm -Rf $HOME/.vim/bundle/Vundle.vim

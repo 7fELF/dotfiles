@@ -160,7 +160,7 @@ highlight link SyntasticStyleWarningSign SignColumn
 "Some tips from http://stevelosh.com/blog/2010/09/coming-home-to-vim/"
 
 set tabstop=4
-set shiftwidth=4
+set shiftwidth=2
 set softtabstop=4
 set expandtab
 

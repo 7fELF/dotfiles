@@ -12,6 +12,7 @@ alias cleanup_docker='docker ps -aq | xargs docker rm'
 alias cleanup_docker_images='docker rmi $(docker images --quiet --filter "dangling=true")'
 alias p='while [ 1 ]; do ping -c 25 8.8.8.8 && clear || sleep 1 || break; done;'
 alias diff='git diff --no-index'
+alias v='vim -p'
 
 # Epitech
 alias blih='blih -u baudra_a'

@@ -77,7 +77,7 @@ call vundle#begin()
  " Plugin 'L9'
 
 
-" Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " Plugin 'sjl/badwolf'
 " Plugin 'plasticboy/vim-markdown'
 " Plugin 'jtratner/vim-flavored-markdown'

@@ -82,7 +82,7 @@ call vundle#begin()
 " Plugin 'plasticboy/vim-markdown'
 " Plugin 'jtratner/vim-flavored-markdown'
 " Plugin 'groenewege/vim-less'
-" Plugin 'editorconfig-vim'
+Plugin 'editorconfig/editorconfig-vim'
 " Plugin 'airblade/vim-gitgutter'
 " Plugin 'kien/ctrlp.vim'
 " Plugin 'ekalinin/Dockerfile.vim'

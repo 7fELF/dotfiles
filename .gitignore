@@ -1,3 +1,4 @@
 /vim/*
+/vim/.*
 !/vim/colors
 !/vim/plugin

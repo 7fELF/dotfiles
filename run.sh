@@ -4,7 +4,7 @@ set -x
 DOTFILES_FOLDER="$PWD/$(dirname $0)"
 
 ln -sf $DOTFILES_FOLDER/vimrc		    $HOME/.vimrc
-ln -sf $DOTFILES_FOLDER/tmux.config	    $HOME/.tmux.conf
+ln -sf $DOTFILES_FOLDER/tmux.conf	    $HOME/.tmux.conf
 ln -sf $DOTFILES_FOLDER/zshrc		    $HOME/.zshrc
 ln -sf $DOTFILES_FOLDER/editorconfig	    $HOME/.editorconfig
 ln -sf $DOTFILES_FOLDER/gitconfig        $HOME/.gitconfig

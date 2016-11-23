@@ -57,253 +57,247 @@ let &t_AF="\e[38;5;%dm"
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle
- " required!
- Plugin 'gmarik/Vundle.vim'
+" required!
+Plugin 'gmarik/Vundle.vim'
 
+Plugin 'tpope/vim-fugitive'
+Plugin 'groenewege/vim-less'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/NERDTree'
+Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+Plugin 'tpope/vim-commentary'
+Plugin 'fatih/vim-go'
+Plugin 'bling/vim-airline'
+Plugin 'pangloss/vim-javascript'
+Plugin 'scrooloose/syntastic'
+Plugin 'terryma/vim-multiple-cursors'
 
- Plugin 'tpope/vim-fugitive'
- Plugin 'groenewege/vim-less'
- Plugin 'editorconfig/editorconfig-vim'
- Plugin 'airblade/vim-gitgutter'
- Plugin 'kien/ctrlp.vim'
- Plugin 'scrooloose/NERDTree'
- Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
- Plugin 'tpope/vim-commentary'
- Plugin 'fatih/vim-go'
- Plugin 'bling/vim-airline'
- Plugin 'pangloss/vim-javascript'
- Plugin 'scrooloose/syntastic'
- Plugin 'terryma/vim-multiple-cursors'
+" ...
+call vundle#end()            " required
+filetype plugin indent on     " required!
 
- " ...
- call vundle#end()            " required
- filetype plugin indent on     " required!
+set guifont       = "Menlo:12"
+colorscheme default
+let g:colors_name = "badwolf"
+set background    = "dark"
 
- set guifont       = "Menlo:12"
- colorscheme default
- let g:colors_name = "badwolf"
- set background    = "dark"
+set modelines=0
+syntax enable
+set nu
+set ruler
 
- set modelines=0
- syntax enable
- set nu
- set ruler
+" remap arrow keys
+noremap <Down> gj
+noremap <Up> gk
 
- " remap arrow keys
- noremap <Down> gj
- noremap <Up> gk
+" copy
+vnoremap <C-c> "*y
 
- " copy
- vnoremap <C-c> "*y
+set wildignore+=*.pdf,*.o,*.obj,*.jpg,*.png
 
+" Command T settings
+let g:CommandTInputDebounce = 200
+let g:CommandTFileScanner = "watchman"
+let g:CommandTWildIgnore = &wildignore . ",**/bower_components/*" . ",**/node_modules/*" . ",**/vendor/*"
+let g:CommandTMaxHeight = 30
+let g:CommandTMaxFiles = 500000
 
- set wildignore+=*.pdf,*.o,*.obj,*.jpg,*.png
+" CtrlP settings
+"
+let g:ctrlp_map = '<leader>t'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard']  " Windows
 
- " Command T settings
- let g:CommandTInputDebounce = 200
- let g:CommandTFileScanner = "watchman"
- let g:CommandTWildIgnore = &wildignore . ",**/bower_components/*" . ",**/node_modules/*" . ",**/vendor/*"
- let g:CommandTMaxHeight = 30
- let g:CommandTMaxFiles = 500000
+" Syntastic
 
- " CtrlP settings
- "
- let g:ctrlp_map = '<leader>t'
- let g:ctrlp_cmd = 'CtrlP'
- let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard']  " Windows
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
- " Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+"let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
 
- set statusline+=%#warningmsg#
- set statusline+=%{SyntasticStatuslineFlag()}
- set statusline+=%*
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
 
- let g:syntastic_always_populate_loc_list = 1
- let g:syntastic_loc_list_height = 5
- let g:syntastic_auto_loc_list = 0
- "let g:syntastic_check_on_open = 1
- let g:syntastic_check_on_wq = 0
- let g:syntastic_javascript_checkers = ['eslint']
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
 
- let g:syntastic_error_symbol = '❌'
- let g:syntastic_style_error_symbol = '⁉️'
- let g:syntastic_warning_symbol = '⚠️'
- let g:syntastic_style_warning_symbol = '💩'
+"Some tips from http://stevelosh.com/blog/2010/09/coming-home-to-vim/"
 
- highlight link SyntasticErrorSign SignColumn
- highlight link SyntasticWarningSign SignColumn
- highlight link SyntasticStyleErrorSign SignColumn
- highlight link SyntasticStyleWarningSign SignColumn
+set tabstop=4
+set shiftwidth=2
+set softtabstop=4
+set expandtab
 
- "Some tips from http://stevelosh.com/blog/2010/09/coming-home-to-vim/"
+set encoding=utf-8
+set scrolloff=3
+set autoindent
+set showmode
+set showcmd
+set hidden
+set wildmenu
+set wildmode=list:longest,full
+set ttyfast
+set backspace=indent,eol,start
+set laststatus=2
+" set relativenumber
+set cursorline
 
- set tabstop=4
- set shiftwidth=2
- set softtabstop=4
- set expandtab
+let mapleader = ","
 
- set encoding=utf-8
- set scrolloff=3
- set autoindent
- set showmode
- set showcmd
- set hidden
- set wildmenu
- set wildmode=list:longest,full
- set ttyfast
- set backspace=indent,eol,start
- set laststatus=2
- " set relativenumber
- set cursorline
+"Custom settings
+set nofoldenable    " disable folding
+let g:vim_markdown_folding_disabled=1
 
+" search remap
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+" clear search
+nnoremap <leader><space> :noh<cr>
 
- let mapleader = ","
+" match the next brace
+nnoremap <tab> %
+vnoremap <tab> %
+set wrap
+set formatoptions=qrn1
+set linebreak
 
- "Custom settings
- set nofoldenable    " disable folding
- let g:vim_markdown_folding_disabled=1
+" remap movement to move by column layout
+nnoremap j gj
+nnoremap k gk
 
- " search remap
- nnoremap / /\v
- vnoremap / /\v
- set ignorecase
- set smartcase
- set gdefault
- set incsearch
- set showmatch
- set hlsearch
- " clear search
- nnoremap <leader><space> :noh<cr>
+"User customizations"
 
- " match the next brace
- nnoremap <tab> %
- vnoremap <tab> %
- set wrap
- set formatoptions=qrn1
- set linebreak
+" Strips whitespace
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
- " remap movement to move by column layout
- nnoremap j gj
- nnoremap k gk
+" Select pasted text
+nnoremap <leader>v V`]
 
- "User customizations"
+"Window splitting remap"
+nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>q <C-w>s<C-w>j
+"Move into splitted windows
+nnoremap <C-h> <C-w>h
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
 
- " Strips whitespace
- nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+" Buffers
+nnoremap <leader>T :enew<cr>
+nnoremap gr :tabnext<CR>
+nnoremap gt :tabprevious<cr>
+nnoremap gd :bdelete<cr>
+nnoremap <leader>bl :ls<CR>
 
- " Select pasted text
- nnoremap <leader>v V`]
+" badwolf settings
+let g:badwolf_darkgutter = 1
+let g:badwolf_tabline = 2
+let g:badwolf_css_props_highlight = 1
+let g:badwolf_html_link_underline = 1
 
- "Window splitting remap"
- nnoremap <leader>w <C-w>v<C-w>l
- nnoremap <leader>q <C-w>s<C-w>j
- "Move into splitted windows
- nnoremap <C-h> <C-w>h
- nnoremap <C-k> <C-w>k
- nnoremap <C-l> <C-w>l
- nnoremap <C-j> <C-w>j
+" Airline settings
+let g:airline#extensions#tabline#enabled =1
+let g:airline_powerline_fonts=1
+nnoremap <leader>d :NERDTreeToggle<CR>
+nnoremap <leader>f :NERDTreeFind<CR>
 
- " Buffers
- nnoremap <leader>T :enew<cr>
- nnoremap gr :tabnext<CR>
- nnoremap gt :tabprevious<cr>
- nnoremap gd :bdelete<cr>
- nnoremap <leader>bl :ls<CR>
+augroup file_types
+  autocmd!
+  autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufRead,BufNewFile *.txt set filetype=markdown
+  autocmd BufRead,BufNewFile *.module set filetype=php
+  autocmd BufRead,BufNewFile *.install set filetype=php
+  autocmd BufRead,BufNewFile *.test set filetype=php
+  autocmd BufRead,BufNewFile *.inc set filetype=php
+  autocmd BufRead,BufNewFile *.profile set filetype=php
+  autocmd BufRead,BufNewFile *.view set filetype=php
+  autocmd BufNewFile,BufRead *.less set filetype=less
+  autocmd BufRead,BufNewFile *.js set ft=javascript syntax=javascript
+  autocmd BufRead,BufNewFile *.ts set ft=typescript syntax=typescript
+  autocmd BufRead,BufNewFile *.es6 set ft=javascript syntax=javascript
+  autocmd BufRead,BufNewFile *.json set ft=json syntax=javascript
+  autocmd BufRead,BufNewFile *.twig set ft=htmldjango
+  autocmd BufRead,BufNewFile *.rabl set ft=ruby
+  autocmd BufRead,BufNewFile *.jade set ft=jade
+augroup END
 
+" Whitespace fixes
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 
+augroup whitespace
+  autocmd!
+  autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+  autocmd BufWinLeave * call clearmatches()
+augroup END
 
- " badwolf settings
- let g:badwolf_darkgutter = 1
- let g:badwolf_tabline = 2
- let g:badwolf_css_props_highlight = 1
- let g:badwolf_html_link_underline = 1
+set undolevels=20
+set title
 
- " Airline settings
- let g:airline#extensions#tabline#enabled =1
- let g:airline_powerline_fonts=1
- nnoremap <leader>d :NERDTreeToggle<CR>
- nnoremap <leader>f :NERDTreeFind<CR>
+set noerrorbells
+set noswapfile
+set nobackup
+nnoremap ; :
 
- augroup file_types
-   autocmd!
-   autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
-   autocmd BufRead,BufNewFile *.md set filetype=markdown
-   autocmd BufRead,BufNewFile *.txt set filetype=markdown
-   autocmd BufRead,BufNewFile *.module set filetype=php
-   autocmd BufRead,BufNewFile *.install set filetype=php
-   autocmd BufRead,BufNewFile *.test set filetype=php
-   autocmd BufRead,BufNewFile *.inc set filetype=php
-   autocmd BufRead,BufNewFile *.profile set filetype=php
-   autocmd BufRead,BufNewFile *.view set filetype=php
-   autocmd BufNewFile,BufRead *.less set filetype=less
-   autocmd BufRead,BufNewFile *.js set ft=javascript syntax=javascript
-   autocmd BufRead,BufNewFile *.ts set ft=typescript syntax=typescript
-   autocmd BufRead,BufNewFile *.es6 set ft=javascript syntax=javascript
-   autocmd BufRead,BufNewFile *.json set ft=json syntax=javascript
-   autocmd BufRead,BufNewFile *.twig set ft=htmldjango
-   autocmd BufRead,BufNewFile *.rabl set ft=ruby
-   autocmd BufRead,BufNewFile *.jade set ft=jade
- augroup END
+" Tabular
+nnoremap <leader>a= :Tabularize /=<CR>
+vnoremap <leader>a= :Tabularize /=<CR>
+nnoremap <leader>a: :Tabularize /:\zs<CR>
+vnoremap <leader>a: :Tabularize /:\zs<CR>
 
- " Whitespace fixes
- highlight ExtraWhitespace ctermbg=red guibg=red
- match ExtraWhitespace /\s\+$/
+" Custom maps
+set pastetoggle=<leader>p
+nnoremap <leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 
- augroup whitespace
-   autocmd!
-   autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-   autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-   autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-   autocmd BufWinLeave * call clearmatches()
- augroup END
+nnoremap <leader>vi :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
+nnoremap <leader>re gg=G
 
- set undolevels=20
- set title
+" Save
+noremap  <silent> <C-S> :update<CR>
+vnoremap <silent> <C-S> <C-C>:update<CR>
+inoremap <silent> <C-S> <C-O>:update<CR>
 
- set noerrorbells
- set noswapfile
- set nobackup
- nnoremap ; :
+" Arrow keys
+"nnoremap <left> <nop>
+"nnoremap <right> <nop>
+"nnoremap <up> <nop>
+"nnoremap <down> <nop>
 
+"inoremap <left> <nop>
+"inoremap <right> <nop>
+"inoremap <up> <nop>
+"inoremap <down> <nop>
 
- " Tabular
- nnoremap <leader>a= :Tabularize /=<CR>
- vnoremap <leader>a= :Tabularize /=<CR>
- nnoremap <leader>a: :Tabularize /:\zs<CR>
- vnoremap <leader>a: :Tabularize /:\zs<CR>
+set fileformat=unix
+set fileformats=unix,dos
 
- " Custom maps
- set pastetoggle=<leader>p
- nnoremap <leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
+hi Comment guifg=#5D5D5D
 
- nnoremap <leader>vi :vsplit $MYVIMRC<cr>
- nnoremap <leader>sv :source $MYVIMRC<cr>
- vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
- nnoremap <leader>re gg=G
+"disable visual bells
+autocmd GUIEnter * set vb t_vb= " for your GUI
+autocmd VimEnter * set vb t_vb=
 
- " Save
- noremap  <silent> <C-S> :update<CR>
- vnoremap <silent> <C-S> <C-C>:update<CR>
- inoremap <silent> <C-S> <C-O>:update<CR>
-
- " Arrow keys
- "nnoremap <left> <nop>
- "nnoremap <right> <nop>
- "nnoremap <up> <nop>
- "nnoremap <down> <nop>
-
- "inoremap <left> <nop>
- "inoremap <right> <nop>
- "inoremap <up> <nop>
- "inoremap <down> <nop>
-
- set fileformat=unix
- set fileformats=unix,dos
-
- hi Comment guifg=#5D5D5D
-
- "disable visual bells
- autocmd GUIEnter * set vb t_vb= " for your GUI
- autocmd VimEnter * set vb t_vb=
-
- autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\s\+$//e

@@ -67,7 +67,7 @@ call vundle#begin()
  Plugin 'airblade/vim-gitgutter'
  Plugin 'kien/ctrlp.vim'
  Plugin 'scrooloose/NERDTree'
- Plugin 'ekalinin/Dockerfile.vim'
+ Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
  Plugin 'tpope/vim-commentary'
  Plugin 'fatih/vim-go'
  Plugin 'bling/vim-airline'

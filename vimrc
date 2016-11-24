@@ -202,8 +202,10 @@ nnoremap <C-j> <C-w>j
 
 " Buffers
 nnoremap <leader>T :enew<cr>
-nnoremap gr :tabnext<CR>
-nnoremap gt :tabprevious<cr>
+nnoremap fr :tabnext<CR>
+nnoremap ft :tabprevious<cr>
+nnoremap gt :bnext<CR>
+nnoremap gr :bprevious<cr>
 nnoremap gd :bdelete<cr>
 nnoremap <leader>bl :ls<CR>
 
@@ -301,3 +303,5 @@ autocmd GUIEnter * set vb t_vb= " for your GUI
 autocmd VimEnter * set vb t_vb=
 
 autocmd BufWritePre * %s/\s\+$//e
+
+imap jj <Esc>

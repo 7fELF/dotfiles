@@ -10,8 +10,6 @@
   cis = commit -s
   cilm = commit -C HEAD --reset-author
   cilmm = commit -c HEAD --reset-author
-  branch =
-  br = branch
   bl = blame -w
   df = diff -b
   sdf = diff -b --staged
@@ -141,7 +139,7 @@
   default = simple
 [alias]
   co = checkout
-  br = branch
+  br = branch -a
   cm = commit
 
   lg = !"git lg1-specific --all"

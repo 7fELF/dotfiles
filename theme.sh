@@ -9,4 +9,4 @@ sudo add-apt-repository ppa:noobslab/icons
 sudo apt-get update
 sudo apt-get install ultra-flat-icons
 
-gsettings set org.gnome.desktop.interface icon-theme "ultra-flat-icons"
+gsettings set org.gnome.desktop.interface icon-theme "Ultra-Flat"

@@ -27,7 +27,13 @@ export NODE_ENV=development
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-
+# parse json
+# send key to retrive in params
+# json "['key1']['key3']"
+function json {
+  export PYTHONIOENCODING=utf8
+  python -c "import sys, json; print json.load(sys.stdin)$1"
+}
 
 # robbyrussell/oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh

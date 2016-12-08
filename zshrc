@@ -21,6 +21,9 @@ alias l='ls -alh'
 # Stop noisy hard drive
 alias ftg='sudo hdparm -Y /dev/sda && sudo hdparm -C /dev/sda'
 
+
+export EDITOR=vim
+
 # Node.js
 export NODE_ENV=development
 # NVM

@@ -11,3 +11,7 @@ sudo apt-get install ultra-flat-icons
 
 gsettings set org.gnome.desktop.interface icon-theme "Ultra-Flat"
 cat ./org.compiz.profiles.unity.plugins.grid.dconf | dconf load
+
+mkdir -p $HOME/.fonts
+cd $HOME/.fonts
+git clone https://github.com/powerline/fonts.git

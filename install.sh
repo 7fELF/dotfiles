@@ -7,31 +7,31 @@
 set -x
 
 PACKAGES="vim \
-	git \
-	rsync \
-    zsh \
-	htop \
-	zip unzip gzip tar\
-	tmux \
-	httpie \
-	wget curl"
+  git \
+  rsync \
+  zsh \
+  htop \
+  zip unzip gzip tar\
+  tmux \
+  httpie \
+  wget curl"
 
 if [ "$(id -u)" != "0" ];
 then
-    SUDO='sudo'
+  SUDO='sudo'
 else
-    SUDO=''
+  SUDO=''
 fi
 
 if A="$( which apt-get )" 2> /dev/null;
 then
-    echo "Installing packages"
-    $SUDO apt-get update && \
-	$SUDO apt-get install -y $PACKAGES
-    echo "Installin oh-my-zsh"
-    wget -qO- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+  echo "Installing packages"
+  $SUDO apt-get update && \
+    $SUDO apt-get install -y $PACKAGES
+  echo "Installin oh-my-zsh"
+  wget -qO- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 else
-    echo "Can't install packages without apt"
+  echo "Can't install packages without apt"
 fi
 
 cd $HOME

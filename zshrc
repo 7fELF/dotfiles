@@ -38,6 +38,11 @@ function json {
   python -c "import sys, json; print json.load(sys.stdin)$1"
 }
 
+function loop {
+  echo "→ while :; do $@; sleep 1; done"
+  while :; do $@; sleep 1; done
+}
+
 # robbyrussell/oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
 

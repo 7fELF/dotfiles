@@ -2,17 +2,18 @@
 set -x
 
 DOTFILES_FOLDER="$PWD/$(dirname $0)"
+LN="ln -sf"
 
-ln -sf $DOTFILES_FOLDER/vimrc		    $HOME/.vimrc
-ln -sf $DOTFILES_FOLDER/tmux.conf	    $HOME/.tmux.conf
-ln -sf $DOTFILES_FOLDER/zshrc		    $HOME/.zshrc
-ln -sf $DOTFILES_FOLDER/editorconfig	    $HOME/.editorconfig
-ln -sf $DOTFILES_FOLDER/gitconfig        $HOME/.gitconfig
-ln -sf $DOTFILES_FOLDER/vim              $HOME/.vim
-ln -sf $DOTFILES_FOLDER/selected_editor  $HOME/.selected_editor
+$LN $DOTFILES_FOLDER/vimrc		    $HOME/.vimrc
+$LN $DOTFILES_FOLDER/tmux.conf	    $HOME/.tmux.conf
+$LN $DOTFILES_FOLDER/zshrc		    $HOME/.zshrc
+$LN $DOTFILES_FOLDER/editorconfig	    $HOME/.editorconfig
+$LN $DOTFILES_FOLDER/gitconfig        $HOME/.gitconfig
+$LN $DOTFILES_FOLDER/vim              $HOME/.vim
+$LN $DOTFILES_FOLDER/selected_editor  $HOME/.selected_editor
 
 mkdir -p $HOME/.config/terminator/
-ln -sf $DOTFILES_FOLDER/config/terminator/config $HOME/.config/terminator/config
+$LN $DOTFILES_FOLDER/config/terminator/config $HOME/.config/terminator/config
 
 mkdir -p  ~/.vim/bundle/
 rm -Rf $HOME/.vim/bundle/Vundle.vim

@@ -19,13 +19,13 @@ function! DeleteSpaces()
   silent execute "1,9s/^ //"
 endfunction
 
-let s:login		= "baudra_a"
+let s:login		= "antoine.baudrand"
 let s:name		= "Antoine Baudrand"
 
 let s:txt_made_by	= "Made by "
 let s:txt_login		= "Login   "
 let s:txt_mail_s	= "<"
-let s:txt_mail_e	= "@epitech.net>"
+let s:txt_mail_e	= "@epitech.eu>"
 let s:txt_start		= "Started on  "
 let s:txt_last		= "Last update "
 let s:txt_for		= " for "
@@ -38,18 +38,21 @@ function s:GetComStr()
   if &ft == "c" || expand("%:e") == "h"
     let s:cs = "/\*"
     let s:cc = "\*\* "
+    let s:ccc = "\*\*"
     let s:ce = "\*/"
   elseif &ft == "cpp" || &ft == "hh" || &ft == "hpp"
     let s:cs = "//"
     let s:cc = "// "
+    let s:ccc = "//"
     let s:ce = "//"
   elseif &ft == "java"
     let s:cs = "/\*"
     let s:cc = "\*\* "
+    let s:ccc = "\*\*"
     let s:ce = "\*/"
   elseif &ft == "make"
     let s:cs = "##"
-    let s:cc = "## "
+    let s:ccc = "##"
     let s:ce = "##"
   else
     let hascom = 0
@@ -94,15 +97,16 @@ endfunction
 
 function HeaderCreate(new)
   if s:GetComStr()
+    let fo_bak=&fo
     setl fo-=o fo-=r fo-=a fo-=c
     setl noautoindent nosmartindent nocindent
     execute "normal! ggO" .
       \ s:cs . "\n".
       \ s:cc . expand("%:t") . s:txt_for . expand("%:p:h:t") . s:txt_in . expand("%:p:h") . "\n".
-      \ s:cc . "\n".
+      \ s:ccc . "\n".
       \ s:cc . s:txt_made_by . s:name . "\n".
       \ s:cc . s:txt_login . s:txt_mail_s . s:login . s:txt_mail_e . "\n".
-      \ s:cc . "\n".
+      \ s:ccc . "\n".
       \ s:cc . s:txt_start . strftime(s:date_format) .' '. s:name . "\n".
       \ s:cc . s:txt_last . strftime(s:date_format) .' '. s:name . "\n".
       \ s:ce
@@ -110,7 +114,7 @@ function HeaderCreate(new)
       execute "normal! 10"
       execute "normal! o"
     endif
-    setl fo+=o fo+=r fo+=a fo+=c
+    let &fo=fo_bak
     setl autoindent smartindent cindent
     if (expand("%:e") == "h" || expand("%:e") == "hh" || expand("%:e") == "hpp") && a:new
       call ProtectHeaders()

@@ -28,7 +28,7 @@ function! GnuIndent()
 endfunction
 
 "Use GnuIndent for C and C++
-au FileType c,cpp call GnuIndent()
+" au FileType c,cpp call GnuIndent()
 
 "To display the status line always
 set laststatus=2
@@ -73,6 +73,7 @@ Plugin 'bling/vim-airline'
 Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/syntastic'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'jiangmiao/auto-pairs'
 
 " ...
 call vundle#end()            " required

@@ -52,6 +52,7 @@ function s:GetComStr()
     let s:ce = "\*/"
   elseif &ft == "make"
     let s:cs = "##"
+    let s:cc = "## "
     let s:ccc = "##"
     let s:ce = "##"
   else

@@ -1,6 +1,6 @@
 # Aliases
 alias p='ping 8.8.8.8'
-alias diff='git diff --no-index'
+function diff { git diff --no-index $1 $2 }
 alias v='vim'
 alias yd='youtube-dl'
 

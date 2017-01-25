@@ -10,7 +10,8 @@ cd $HOME/.themes
 git clone https://github.com/anmoljagetia/Flatabulous.git
 gsettings set org.gnome.desktop.interface gtk-theme "Flatabulous"
 
-$LN $DOTFILES_FOLDER/icons              $HOME/.icons
+rm -rf $HOME/.icons
+$LN $DOTFILES_FOLDER/icons $HOME/.icons
 
 sudo apt-get install -y terminator
 sudo chsh $USER -s $(which zsh)

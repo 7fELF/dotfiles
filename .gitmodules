@@ -1,0 +1,3 @@
+[submodule "icons/yltra-flat-icon-theme"]
+	path = icons/yltra-flat-icon-theme
+	url = git@github.com:antoinegergy/yltra-flat-icon-theme.git

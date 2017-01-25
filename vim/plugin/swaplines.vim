@@ -25,6 +25,6 @@ function! s:swap_lines(n1, n2)
                                           exec n + 1
                                         endfunction
 
-                                        noremap <silent> <c-k> :call <SID>swap_up()<CR>
-                                        noremap <silent> <c-j> :call <SID>swap_down()<CR>
+                                        noremap <silent> <C-k> :call <SID>swap_up()<CR>
+                                        noremap <silent> <C-j> :call <SID>swap_down()<CR>
 

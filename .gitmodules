@@ -1,3 +1,6 @@
 [submodule "icons/yltra-flat-icon-theme"]
 	path = icons/yltra-flat-icon-theme
 	url = git@github.com:antoinegergy/yltra-flat-icon-theme.git
+[submodule "themes/Flatabulous"]
+	path = themes/Flatabulous
+	url = https://github.com/anmoljagetia/Flatabulous.git

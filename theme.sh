@@ -5,9 +5,10 @@ DOTFILES_FOLDER="$PWD/$(dirname $0)"
 LN="ln -sf"
 
 sudo apt-get install gnome-tweak-tool
-mkdir $HOME/.themes
-cd $HOME/.themes
-git clone https://github.com/anmoljagetia/Flatabulous.git
+
+rm -rf $HOME/.icons
+$LN $DOTFILES_FOLDER/themes $HOME/.themes
+
 gsettings set org.gnome.desktop.interface gtk-theme "Flatabulous"
 
 rm -rf $HOME/.icons

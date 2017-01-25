@@ -12,6 +12,7 @@ $LN $DOTFILES_FOLDER/gitconfig          $HOME/.gitconfig
 $LN $DOTFILES_FOLDER/vim                $HOME/.vim
 $LN $DOTFILES_FOLDER/selected_editor    $HOME/.selected_editor
 $LN $DOTFILES_FOLDER/ycm_extra_conf.py  $HOME/.ycm_extra_conf.py
+$LN $DOTFILES_FOLDER/ideavimrc          $HOME/.ideavimrc
 
 mkdir -p $HOME/.config/terminator/
 $LN $DOTFILES_FOLDER/config/terminator/config $HOME/.config/terminator/config

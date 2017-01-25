@@ -10,6 +10,9 @@ alias php='docker run --rm -ti php:7'
 alias cleanup_docker='docker ps -aq | xargs docker rm'
 alias cleanup_docker_images='docker rmi $(docker images --quiet --filter "dangling=true")'
 
+# Ungit
+alias fungit='forever start $(which ungit) --no-launchBrowser'
+
 # Epitech
 alias blih='blih -u baudra_a'
 alias ns_auth='ns_auth -u baudra_a'

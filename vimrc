@@ -1,6 +1,9 @@
 filetype plugin indent on
 syntax on
 
+"https://github.com/vim/vim/issues/406
+let c_no_curly_error = 1
+
 "Remap undo and redo to Ctrl-Z and Ctrl-Y
 nnoremap <C-z>  :undo<CR>
 inoremap <C-z>  <Esc>:undo<CR>
@@ -181,8 +184,12 @@ let g:vim_markdown_folding_disabled=1
 " search remap
 nnoremap / /\v
 vnoremap / /\v
+
+" Use case insensitive search except when using capital letters
 set ignorecase
 set smartcase
+
+
 set gdefault
 set incsearch
 set showmatch

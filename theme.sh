@@ -4,7 +4,6 @@ set -x
 DOTFILES_FOLDER="$PWD/$(dirname $0)"
 LN="ln -sf"
 
-sudo apt-get install gnome-tweak-tool
 
 rm -rf $HOME/.icons
 $LN $DOTFILES_FOLDER/themes $HOME/.themes
@@ -14,7 +13,7 @@ gsettings set org.gnome.desktop.interface gtk-theme "Flatabulous"
 rm -rf $HOME/.icons
 $LN $DOTFILES_FOLDER/icons $HOME/.icons
 
-sudo apt-get install -y terminator
+sudo apt-get install -y terminator gnome-tweak-tool redshift
 sudo chsh $USER -s $(which zsh)
 
 gsettings set org.gnome.desktop.interface icon-theme "Ultra-Flat"

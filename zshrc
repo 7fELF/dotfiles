@@ -68,6 +68,9 @@ plugins=(tmux)
 
 source $ZSH/oh-my-zsh.sh
 
+# Termbin
+alias termbin='ncat termbin.com 9999'
+
 # Use Ctrl-U Remove everything before cursor
 bindkey \^U backward-kill-line
 

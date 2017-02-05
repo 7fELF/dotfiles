@@ -22,3 +22,22 @@ rm -Rf "$HOME/.vim/bundle/Vundle.vim"
 git clone https://github.com/VundleVim/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim"
 vim +PluginInstall +qall
 reset
+
+PACKAGES=(
+  git
+  vim
+  rsync
+  htop
+  zip unzip
+  gzip tar
+  tmux
+  httpie
+)
+
+if [ -x "$(command -v apt-get)" ];
+then
+  echo "Installing packages"
+  sudo apt-get install -y "${PACKAGES[@]}"
+else
+  echo "Can't install packages without apt"
+fi

@@ -4,7 +4,6 @@ set -ex
 DOTFILES_FOLDER="$PWD/$(dirname "$0")"
 LN="ln -sf"
 
-
 # Setup themes folder
 rm -rf "$HOME/.themes"
 $LN "$DOTFILES_FOLDER/themes" "$HOME/.themes"
@@ -21,7 +20,11 @@ $LN "$DOTFILES_FOLDER/icons" "$HOME/.icons"
 gsettings set org.gnome.desktop.interface icon-theme "Ultra-Flat"
 
 # Install a few packages
-sudo apt-get install -y zsh terminator gnome-tweak-tool redshift vlc firefox
+PACKAGES=(zsh terminator redshift vlc firefox)
+sudo apt-get install -y "${PACKAGES[@]}"
+
+echo "Installing oh-my-zsh"
+wget -qO- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 
 # Set zsh default shell
 sudo chsh "$USER" -s "$(which zsh)"
@@ -32,11 +35,7 @@ mkdir -p "$HOME/.fonts"
 cd "$HOME/.fonts"
 git clone https://github.com/powerline/fonts.git
 
-# 3x3 Workspace grid
-gsettings set org.compiz.core:/org/compiz/profiles/unity/plugins/core/ hsize 3
-gsettings set org.compiz.core:/org/compiz/profiles/unity/plugins/core/ vsize 3
-
-# cat ./dconf.dump | dconf load
+dconf load / < "$DOTFILES_FOLDER/dconf.dump"
 
 # Set a Wallpaper
 WALLPAPER_URL="https://breakingmen.files.wordpress.com/2014/02/300002.jpg"

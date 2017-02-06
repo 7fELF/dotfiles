@@ -4,3 +4,6 @@
 [submodule "themes/Flatabulous"]
 	path = themes/Flatabulous
 	url = https://github.com/anmoljagetia/Flatabulous.git
+[submodule "fonts/powerline"]
+	path = fonts/powerline
+	url = https://github.com/powerline/fonts.git

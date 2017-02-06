@@ -14,6 +14,10 @@ $LN "$DOTFILES_FOLDER/themes" "$HOME/.themes"
 rm -rf "$HOME/.icons"
 $LN "$DOTFILES_FOLDER/icons" "$HOME/.icons"
 
+# Setup the fonts folder
+rm -rf "$HOME/.fonts"
+$LN "$DOTFILES_FOLDER/fonts" "$HOME/.fonts"
+
 # Install a few packages
 PACKAGES=(zsh terminator redshift vlc firefox)
 sudo apt-get install -y "${PACKAGES[@]}"
@@ -29,13 +33,6 @@ wget -qO- "https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools
 
 # Get our zshrc back
 $LN "$DOTFILES_FOLDER/zshrc"              "$HOME/.zshrc"
-
-# Install powerline fonts
-# TODO: use a submodule for that
-rm -rf "$HOME/.fonts"
-mkdir -p "$HOME/.fonts"
-cd "$HOME/.fonts"
-git clone https://github.com/powerline/fonts.git
 
 # Load my dconf dump
 dconf load / < "$DOTFILES_FOLDER/dconf.ini"

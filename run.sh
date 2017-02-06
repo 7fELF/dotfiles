@@ -4,6 +4,25 @@ set -ex
 DOTFILES_FOLDER="$PWD/$(dirname "$0")"
 LN="ln -sf"
 
+PACKAGES=(
+  git
+  vim
+  rsync
+  htop
+  zip unzip
+  gzip tar
+  tmux
+  httpie
+)
+
+if [ -x "$(command -v apt-get)" ];
+then
+  echo "Installing packages"
+  sudo apt-get install -y "${PACKAGES[@]}"
+else
+  echo "Can't install packages without apt"
+fi
+
 $LN "$DOTFILES_FOLDER/vimrc"              "$HOME/.vimrc"
 $LN "$DOTFILES_FOLDER/tmux.conf"          "$HOME/.tmux.conf"
 $LN "$DOTFILES_FOLDER/zshrc"              "$HOME/.zshrc"
@@ -23,21 +42,3 @@ git clone https://github.com/VundleVim/Vundle.vim.git "$HOME/.vim/bundle/Vundle.
 vim +PluginInstall +qall
 reset
 
-PACKAGES=(
-  git
-  vim
-  rsync
-  htop
-  zip unzip
-  gzip tar
-  tmux
-  httpie
-)
-
-if [ -x "$(command -v apt-get)" ];
-then
-  echo "Installing packages"
-  sudo apt-get install -y "${PACKAGES[@]}"
-else
-  echo "Can't install packages without apt"
-fi

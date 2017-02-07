@@ -29,6 +29,7 @@ sudo chsh "$USER" -s "$(which zsh)"
 
 # Avoid breaking the oh-my-zsh install script
 rm -rf "$HOME/.zshrc"
+export SHELL="$(which zsh)"
 
 echo "Installing oh-my-zsh"
 wget -qO- "https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh" | sh

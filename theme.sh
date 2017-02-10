@@ -24,6 +24,9 @@ link_folder fonts
 PACKAGES=(zsh terminator redshift vlc firefox)
 sudo apt-get install -y "${PACKAGES[@]}"
 
+# Autostart redshift
+$LN "$DOTFILES_FOLDER/redshift.desktop" "$HOME/.config/autostart/"
+
 # Set zsh default shell
 sudo chsh "$USER" -s "$(which zsh)"
 

@@ -21,10 +21,11 @@ link_folder icons
 link_folder fonts
 
 # Install a few packages
-PACKAGES=(zsh terminator redshift vlc firefox)
+PACKAGES=(zsh terminator redshift vlc firefox vim-gtk)
 sudo apt-get install -y "${PACKAGES[@]}"
 
 # Autostart redshift
+mkdir -p "$HOME/.config/autostart/"
 $LN "$DOTFILES_FOLDER/redshift.desktop" "$HOME/.config/autostart/"
 
 # Set zsh default shell

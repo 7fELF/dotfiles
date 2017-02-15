@@ -21,7 +21,18 @@ link_folder icons
 link_folder fonts
 
 # Install a few packages
-PACKAGES=(zsh terminator redshift vlc firefox vim-gtk)
+PACKAGES=(
+  zsh
+  terminator
+  redshift
+  vlc
+  firefox
+  vim-gtk
+  python-pip
+  youtube-dl
+  ffmpeg
+)
+
 sudo apt-get install -y "${PACKAGES[@]}"
 
 # Autostart redshift

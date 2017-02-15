@@ -13,6 +13,7 @@ PACKAGES=(
   gzip tar
   tmux
   httpie
+  tree
 )
 
 if [ -x "$(command -v apt-get)" ];

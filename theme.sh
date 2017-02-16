@@ -20,6 +20,14 @@ link_folder icons
 # Setup the fonts folder
 link_folder fonts
 
+# Gtk3 settings (dark mode)
+link_folder "config/gtk-3.0"
+
+# Home folders
+mkdir -p "$HOME/Downloads" "$HOME/repos" "$HOME/Videos"
+$LN "$DOTFILES_FOLDER/config/user-dirs.dirs" "$HOME/.config/user-dirs.dirs"
+rm -rf Desktop Music Public Templates Pictures Documents
+
 # Install a few packages
 PACKAGES=(
   zsh

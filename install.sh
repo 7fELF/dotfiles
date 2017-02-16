@@ -20,4 +20,4 @@ git clone --recursive https://github.com/antoinegergy/dotfiles.git
 cd dotfiles
 ./run.sh
 ./theme.sh
-
+./clean_ubuntu.sh

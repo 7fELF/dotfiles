@@ -26,7 +26,7 @@ link_folder "config/gtk-3.0"
 # Home folders
 mkdir -p "$HOME/Downloads" "$HOME/repos" "$HOME/Videos"
 $LN "$DOTFILES_FOLDER/config/user-dirs.dirs" "$HOME/.config/user-dirs.dirs"
-rm -rf Desktop Music Public Templates Pictures Documents
+rmdir "$HOME/Desktop" "$HOME/Music" "$HOME/Public" "$HOME/Templates" "$HOME/Pictures" "$HOME/Documents"
 
 # Install a few packages
 PACKAGES=(
@@ -52,7 +52,8 @@ sudo chsh "$USER" -s "$(which zsh)"
 
 # Avoid breaking the oh-my-zsh install script
 rm -rf "$HOME/.zshrc"
-export SHELL="$(which zsh)"
+export SHELL
+SHELL="$(which zsh)"
 
 echo "Installing oh-my-zsh"
 wget -qO- "https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh" | sh

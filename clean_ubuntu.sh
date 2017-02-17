@@ -25,4 +25,4 @@ PACKAGES=(
   "remmina-*"
 )
 
-sudo apt autoremove "${PACKAGES[@]}"
+sudo apt autoremove -y "${PACKAGES[@]}"

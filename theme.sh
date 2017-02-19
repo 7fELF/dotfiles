@@ -69,3 +69,6 @@ WALLPAPER_URL="https://archive-media-1.nyafuu.org/wg/image/1473/13/1473131556085
 wget "$WALLPAPER_URL" -O "$HOME/w.jpg"
 gsettings set org.gnome.desktop.background picture-uri "file://$HOME/w.jpg"
 
+# Remove devices from unity launcher
+"$DOTFILES_FOLDER"/ubuntu_remove_devices_from_launcher.sh
+

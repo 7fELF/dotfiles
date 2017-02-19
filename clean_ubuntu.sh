@@ -23,6 +23,8 @@ PACKAGES=(
   unity-lens-photos
   unity-webapps-common
   "remmina-*"
+  vino
 )
 
 sudo apt autoremove -y "${PACKAGES[@]}"
+sudo apt autoremove -y

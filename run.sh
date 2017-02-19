@@ -14,14 +14,15 @@ PACKAGES=(
   tmux
   httpie
   tree
+  shellcheck
 )
 
-if [ -x "$(command -v apt-get)" ];
-then
+if [ -x "$(command -v apt-get)" ]; then
   echo "Installing packages"
   sudo apt-get install -y "${PACKAGES[@]}"
 else
   echo "Can't install packages without apt"
+  sleep 3
 fi
 
 $LN "$DOTFILES_FOLDER/vimrc"              "$HOME/.vimrc"

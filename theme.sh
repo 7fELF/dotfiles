@@ -26,7 +26,7 @@ link_folder "config/gtk-3.0"
 # Home folders
 mkdir -p "$HOME/Downloads" "$HOME/repos" "$HOME/Videos"
 $LN "$DOTFILES_FOLDER/config/user-dirs.dirs" "$HOME/.config/user-dirs.dirs"
-rmdir "$HOME/Desktop" "$HOME/Music" "$HOME/Public" "$HOME/Templates" "$HOME/Pictures" "$HOME/Documents"
+rm -d -f "$HOME/Desktop" "$HOME/Music" "$HOME/Public" "$HOME/Templates" "$HOME/Pictures" "$HOME/Documents"
 
 # Install a few packages
 PACKAGES=(

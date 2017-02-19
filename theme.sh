@@ -66,8 +66,11 @@ dconf load / < "$DOTFILES_FOLDER/dconf.ini"
 
 # Set a Wallpaper
 WALLPAPER_URL="https://archive-media-1.nyafuu.org/wg/image/1473/13/1473131556085.jpg"
-wget "$WALLPAPER_URL" -O "$HOME/w.jpg"
+if [ ! -f "$HOME/w.jpg" ]; then
+  wget "$WALLPAPER_URL" -O "$HOME/w.jpg"
+fi
 gsettings set org.gnome.desktop.background picture-uri "file://$HOME/w.jpg"
+gsettings set org.gnome.settings-daemon.plugins.background active true
 
 # Remove devices from unity launcher
 "$DOTFILES_FOLDER"/ubuntu_remove_devices_from_launcher.sh

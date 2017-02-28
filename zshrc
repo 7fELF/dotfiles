@@ -2,7 +2,12 @@
 alias p='ping 8.8.8.8'
 function diff { git diff --no-index $1 $2 }
 alias v='vim'
+alias vdiff='vim -d'
+
+# Youtube-dl
 alias yd='youtube-dl'
+alias yd_mp3='yd -x --audio-format mp3'
+alias yd_wav='yd -x --audio-format wav'
 
 # Docker
 alias composer='docker run --rm -u $UID:$GID -v $(pwd):/app composer/composer'

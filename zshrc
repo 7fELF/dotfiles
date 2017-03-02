@@ -15,24 +15,6 @@ alias php='docker run --rm -ti php:7'
 alias cleanup_docker='docker ps -aq | xargs docker rm'
 alias cleanup_docker_images='docker rmi $(docker images --quiet --filter "dangling=true")'
 
-# Ungit
-UNGIT_PATH=$(sh -c "which ungit")
-function ungit() {
-  if ! curl -s 127.0.0.1:8448 > /dev/null; then
-    echo "Ungit not started, starting ungit..."
-    forever start "$UNGIT_PATH" \
-      --no-launchBrowser  \
-      --allowedIPs "[::ffff:127.0.0.1, ::1, 127.0.0.1]"
-    echo -n "Waiting for ungit to start"
-    while ! curl -s 127.0.0.1:8448 > /dev/null; do
-      echo -n "."
-      sleep 1
-    done
-  fi
-  echo "\nOpening ungit..."
-  $UNGIT_PATH
-}
-
 # Epitech
 alias blih='blih -u baudra_a'
 alias ns_auth='ns_auth -u baudra_a'
@@ -46,6 +28,7 @@ alias l='ls -alh'
 # Stop noisy hard drive
 alias ftg='sudo hdparm -Y /dev/sda && sudo hdparm -C /dev/sda'
 
+# Use Vim as default editor
 export EDITOR=vim
 
 # Node.js
@@ -54,6 +37,25 @@ export NODE_ENV=development
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Ungit
+UNGIT_PATH=$(sh -c "which ungit")
+function ungit() {
+  if ! curl -s 127.0.0.1:8448 > /dev/null; then
+    echo "Ungit not started, starting ungit..."
+    forever start "$UNGIT_PATH" \
+      --no-launchBrowser  \
+      --allowedIPs "[::ffff:127.0.0.1, ::1, 127.0.0.1]"
+    echo -n "Waiting for ungit to start"
+    while ! curl -s 127.0.0.1:8448 > /dev/null; do
+      echo -n "."
+      sleep 1
+    done
+    echo
+  fi
+  echo "Opening ungit..."
+  $UNGIT_PATH
+}
 
 # parse json
 # send key to retrive in params

@@ -31,6 +31,14 @@ alias ftg='sudo hdparm -Y /dev/sda && sudo hdparm -C /dev/sda'
 # Use Vim as default editor
 export EDITOR=vim
 
+# Use vim as pager: http://vim.wikia.com/wiki/Using_vim_as_a_man-page_viewer_under_Unix
+export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
+  vim  -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
+  -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
+  -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
+
+export MANWIDTH=90
+
 # Node.js
 export NODE_ENV=development
 

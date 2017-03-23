@@ -20,7 +20,7 @@
     background_image = None
     cursor_blink = False
     cursor_color = "#4c4c4c"
-    font = Source Code Pro for Powerline Medium 11
+    font = Hack 10
     foreground_color = "#a99ca0"
     palette = "#000000:#aa0000:#00aa00:#aa5500:#5959d7:#aa00aa:#00aaaa:#aaaaaa:#808080:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
     scroll_background = False

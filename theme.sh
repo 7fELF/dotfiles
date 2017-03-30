@@ -75,3 +75,4 @@ gsettings set org.gnome.settings-daemon.plugins.background active true
 # Remove devices from unity launcher
 "$DOTFILES_FOLDER"/ubuntu_remove_devices_from_launcher.sh
 
+firefox "about:accounts?action=signin"

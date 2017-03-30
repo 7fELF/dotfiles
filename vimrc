@@ -77,10 +77,8 @@ Plugin 'bling/vim-airline'
 Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/syntastic'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'jiangmiao/auto-pairs'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-
 
 " Track the engine.
 Plugin 'SirVer/ultisnips'
@@ -99,10 +97,10 @@ let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
-set guifont       = "Menlo:12"
+" GVim font
+set guifont=Hack\ 10
 colorscheme default
 let g:colors_name = "badwolf"
-set background    = "dark"
 
 set modelines=0
 syntax enable
@@ -216,7 +214,7 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Select pasted text
 nnoremap <leader>v V`]
 
-"Window splitting remap"
+"Window splitting remap
 nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <leader>q <C-w>s<C-w>j
 "Move into splitted windows
@@ -248,7 +246,6 @@ nnoremap <leader>f :NERDTreeFind<CR>
 
 augroup file_types
   autocmd!
-  autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufRead,BufNewFile *.txt set filetype=markdown
   autocmd BufRead,BufNewFile *.module set filetype=php
@@ -279,7 +276,7 @@ augroup whitespace
   autocmd BufWinLeave * call clearmatches()
 augroup END
 
-set undolevels=20
+set undolevels=100
 set title
 
 set noerrorbells
@@ -287,7 +284,7 @@ set noswapfile
 set nobackup
 nnoremap ; :
 
-" Tabular
+" Tabular https://github.com/godlygeek/tabular
 nnoremap <leader>a= :Tabularize /=<CR>
 vnoremap <leader>a= :Tabularize /=<CR>
 nnoremap <leader>a: :Tabularize /:\zs<CR>
@@ -295,23 +292,17 @@ vnoremap <leader>a: :Tabularize /:\zs<CR>
 
 " Custom maps
 set pastetoggle=<leader>p
-nnoremap <leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 
 nnoremap <leader>vi :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
 nnoremap <leader>re gg=G
 
-" Save
-noremap  <silent> <C-S> :update<CR>
-vnoremap <silent> <C-S> <C-C>:update<CR>
-inoremap <silent> <C-S> <C-O>:update<CR>
-
 " Arrow keys
-"nnoremap <left> <nop>
-"nnoremap <right> <nop>
-"nnoremap <up> <nop>
-"nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
 
 "inoremap <left> <nop>
 "inoremap <right> <nop>
@@ -329,4 +320,4 @@ autocmd VimEnter * set vb t_vb=
 
 autocmd BufWritePre * %s/\s\+$//e
 
-imap jj <Esc>
+" imap jj <Esc>

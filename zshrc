@@ -49,6 +49,9 @@ export NODE_ENV=development
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+# Opam OCaml package manager
+. /home/antoine/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
 # Ungit
 UNGIT_PATH=$(sh -c "which ungit")
 function ungit() {

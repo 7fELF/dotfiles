@@ -149,12 +149,8 @@ function InsertPrototypes()
   if (expand("%:e") != "h")
     return
   endif
-  let cfile = expand("%:p:r") . ".c"
-  if !filereadable(cfile)
-    let cfile = expand("%:p:h") . input("Saisir un fichier: ", ".c")
-    if !filereadable(cfile)
-      return
-    endif
+  let cfile = input("Get prototypes from c filename: ", "")
+  if empty(glob(cfile))
     return
   endif
   let l = line(".")

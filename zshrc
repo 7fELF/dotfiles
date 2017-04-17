@@ -3,6 +3,17 @@ alias p='ping 8.8.8.8'
 function diff { git diff --no-index $1 $2 }
 alias v='vim'
 alias vdiff='vim -d'
+function watchrepo {
+  while :; do
+    clear
+    date
+    git lg | head -n $((LINES - 2))
+    if [ $(date "+%S") -eq 0 ]; then
+      git fetch
+    fi
+    sleep 1
+  done;
+}
 
 # Youtube-dl
 alias yd='youtube-dl'

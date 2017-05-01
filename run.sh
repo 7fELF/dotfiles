@@ -38,9 +38,8 @@ $LN "$DOTFILES_FOLDER/ideavimrc"          "$HOME/.ideavimrc"
 mkdir -p "$HOME/.config/terminator/"
 $LN "$DOTFILES_FOLDER/config/terminator/config" "$HOME/.config/terminator/config"
 
-mkdir -p  ~/.vim/bundle/
-rm -Rf "$HOME/.vim/bundle/Vundle.vim"
-git clone https://github.com/VundleVim/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim"
-vim +PluginInstall +qall
-reset
+rm -rf "$HOME/.vim/autoload"
+curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
+  "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+vim +PlugInstall +qall
 

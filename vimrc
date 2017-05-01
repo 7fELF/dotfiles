@@ -12,11 +12,8 @@ inoremap <C-y>  <Esc>:redo<CR>
 
 "number of forgivable mistakes
 set undolevels=1000
-"write swap file to disk every 100 chars
-set updatecount=100
 "do lots of scanning on tab completion
 set complete=.,w,b,u,U,t,i,d
-set textwidth=80
 
 "Show line numbers, relative to the cursor position
 set relativenumber
@@ -47,8 +44,6 @@ set noshowmode
 let g:epitech_header = 1
 let g:epitech_dont_update_header = 1
 
-map <C-n> :NERDTreeToggle<CR>
-set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 set nocompatible
 filetype off
@@ -59,36 +54,44 @@ let &t_AB="\e[48;5;%dm"
 let &t_AF="\e[38;5;%dm"
 
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle
-" required!
-Plugin 'gmarik/Vundle.vim'
+call plug#begin()
 
-Plugin 'tpope/vim-fugitive'
-Plugin 'groenewege/vim-less'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/NERDTree'
-Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
-Plugin 'tpope/vim-commentary'
-Plugin 'fatih/vim-go'
-Plugin 'bling/vim-airline'
-Plugin 'pangloss/vim-javascript'
-Plugin 'scrooloose/syntastic'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+" Defaults everyone can agree on
+Plug 'tpope/vim-sensible'
+" Git wrapper so awesome, it should be illegal
+Plug 'tpope/vim-fugitive'
+" EditorConfig plugin for Vim
+Plug 'editorconfig/editorconfig-vim'
+" A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
+Plug 'airblade/vim-gitgutter'
+" Dokcer syntax
+Plug 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+" Use gcc to comment out a line
+Plug 'tpope/vim-commentary'
+" Go development plugin for Vim
+Plug 'fatih/vim-go'
+" lean & mean status/tabline for vim that's light as air
+Plug 'bling/vim-airline'
+" Vastly improved Javascript indentation and syntax support in Vim.
+Plug 'pangloss/vim-javascript'
+" Syntax checking hacks for vim
+Plug 'scrooloose/syntastic'
+" True Sublime Text style multiple selections for Vim
+Plug 'terryma/vim-multiple-cursors'
+" A code-completion engine for Vim
+Plug 'Valloric/YouCompleteMe'
+" Generates config files for YouCompleteMe
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+" The ultimate snippet solution for Vim.
+Plug 'SirVer/ultisnips'
+" UltiSnip Snippets
+Plug 'honza/vim-snippets'
 
-" Track the engine.
-Plugin 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+call plug#end()
+
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<C-b>"
 
-" ...
-call vundle#end()            " required
 filetype plugin indent on     " required!
 
 
@@ -116,19 +119,6 @@ vnoremap <C-c> "*y
 
 set wildignore+=*.pdf,*.o,*.obj,*.jpg,*.png
 
-" Command T settings
-let g:CommandTInputDebounce = 200
-let g:CommandTFileScanner = "watchman"
-let g:CommandTWildIgnore = &wildignore . ",**/bower_components/*" . ",**/node_modules/*" . ",**/vendor/*"
-let g:CommandTMaxHeight = 30
-let g:CommandTMaxFiles = 500000
-
-" CtrlP settings
-"
-let g:ctrlp_map = '<leader>t'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard']  " Windows
-
 " Syntastic
 
 set statusline+=%#warningmsg#
@@ -152,8 +142,6 @@ highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
-"Some tips from http://stevelosh.com/blog/2010/09/coming-home-to-vim/"
-
 set tabstop=4
 set shiftwidth=2
 set softtabstop=4
@@ -170,7 +158,6 @@ set wildmode=list:longest,full
 set ttyfast
 set backspace=indent,eol,start
 set laststatus=2
-" set relativenumber
 set cursorline
 
 let mapleader = ","
@@ -241,8 +228,6 @@ let g:badwolf_html_link_underline = 1
 " Airline settings
 let g:airline#extensions#tabline#enabled =1
 let g:airline_powerline_fonts=1
-nnoremap <leader>d :NERDTreeToggle<CR>
-nnoremap <leader>f :NERDTreeFind<CR>
 
 augroup file_types
   autocmd!
@@ -276,19 +261,12 @@ augroup whitespace
   autocmd BufWinLeave * call clearmatches()
 augroup END
 
-set undolevels=100
 set title
 
 set noerrorbells
 set noswapfile
 set nobackup
 nnoremap ; :
-
-" Tabular https://github.com/godlygeek/tabular
-nnoremap <leader>a= :Tabularize /=<CR>
-vnoremap <leader>a= :Tabularize /=<CR>
-nnoremap <leader>a: :Tabularize /:\zs<CR>
-vnoremap <leader>a: :Tabularize /:\zs<CR>
 
 " Custom maps
 set pastetoggle=<leader>p
@@ -320,4 +298,3 @@ autocmd VimEnter * set vb t_vb=
 
 autocmd BufWritePre * %s/\s\+$//e
 
-" imap jj <Esc>

@@ -16,7 +16,14 @@ function watchrepo {
 }
 
 # Youtube-dl
-alias yd='youtube-dl'
+alias yd='youtube-dl \
+  --write-sub \
+  --write-description \
+  --write-thumbnail \
+  --sub-format srt \
+  --sub-lang en \
+  -o "%(title)s/%(title)s-%(id)s.%(ext)s"'
+
 alias yd_mp3='yd -x --audio-format mp3'
 alias yd_wav='yd -x --audio-format wav'
 

@@ -1,12 +1,7 @@
 # dotfiles
 
 ## Description
-
 Sets up my work environment with all my configuration files in only a few minutes
-
-## Requirements
-  - wget or curl
-  - sudo
 
 ## Quick install command
 :warning: Tested only on Ubuntu 16.04 :warning:

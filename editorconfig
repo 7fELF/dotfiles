@@ -1,3 +1,4 @@
+# https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties
 root = true
 
 [*]
@@ -5,18 +6,30 @@ max_line_length = 100
 indent_style = space
 indent_size = 2
 end_of_line = lf
+tab_width = 4
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
 [*.c]
 max_line_length = 80
+tab_width = 8
+
+[*.h]
+max_line_length = 80
+tab_width = 8
 
 [*.yml]
+indent_style = space
 indent_size = 4
 
 [*.md]
 trim_trailing_whitespace = false
+
+[*.go]
+indent_style = tab
+tab_width = 4
+indent_size = 4
 
 [Makefile]
 indent_style = tab

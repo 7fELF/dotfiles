@@ -20,16 +20,6 @@ set relativenumber
 "Show the absolute line number at the cursor position
 set number
 
-"GNU Style indentation for Epitech
-function! GnuIndent()
-  setlocal cinoptions=>4,n-2,{2,^-2,:2,=2,g0,h2,p5,t0,+2,(0,u0,w1,m1
-  setlocal shiftwidth=0
-  setlocal tabstop=8
-endfunction
-
-"Use GnuIndent for C and C++
-" au FileType c,cpp call GnuIndent()
-
 "To display the status line always
 set laststatus=2
 
@@ -60,6 +50,8 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 " Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
+" Go development plugin for Vim
+Plug 'fatih/vim-go'
 " EditorConfig plugin for Vim
 Plug 'editorconfig/editorconfig-vim'
 " A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
@@ -68,8 +60,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 " Use gcc to comment out a line
 Plug 'tpope/vim-commentary'
-" Go development plugin for Vim
-Plug 'fatih/vim-go'
 " lean & mean status/tabline for vim that's light as air
 Plug 'bling/vim-airline'
 " Vastly improved Javascript indentation and syntax support in Vim.
@@ -88,6 +78,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 call plug#end()
+
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<C-b>"
@@ -141,11 +132,6 @@ highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
-
-set tabstop=4
-set shiftwidth=2
-set softtabstop=4
-set expandtab
 
 set encoding=utf-8
 set scrolloff=3
@@ -298,3 +284,5 @@ autocmd VimEnter * set vb t_vb=
 
 autocmd BufWritePre * %s/\s\+$//e
 
+" preserve clipboard on exit
+autocmd VimLeave * call system("xsel -ib", getreg('+'))

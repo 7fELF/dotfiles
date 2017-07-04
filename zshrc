@@ -27,6 +27,11 @@ alias yd='youtube-dl \
 alias yd_mp3='yd -x --audio-format mp3'
 alias yd_wav='yd -x --audio-format wav'
 
+# Power
+alias lock='gnome-screensaver-command -l'
+alias safe-suspend='lock && sudo pm-suspend-hybrid'
+alias hibernate='lock && sudo pm-hibernate'
+
 # Docker
 alias composer='docker run --rm -u $UID:$GID -v $(pwd):/app composer/composer'
 alias php='docker run --rm -ti php:7'
@@ -136,3 +141,8 @@ export PATH="$PATH:/usr/lib/jvm/jdk1.8.0/bin"
 # Android
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
+
+# Golang
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/repos/go
+

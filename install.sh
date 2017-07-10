@@ -21,3 +21,4 @@ cd dotfiles
 ./run.sh
 ./theme.sh
 ./clean_ubuntu.sh
+./set_ssh_remote.sh

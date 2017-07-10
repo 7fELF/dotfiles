@@ -28,7 +28,11 @@ mkdir -p "$HOME/Downloads" "$HOME/repos" "$HOME/Videos"
 $LN "$DOTFILES_FOLDER/config/user-dirs.dirs" "$HOME/.config/user-dirs.dirs"
 rm -d -f "$HOME/Desktop" "$HOME/Music" "$HOME/Public" "$HOME/Templates" "$HOME/Pictures" "$HOME/Documents"
 
-$DOTFILES_FOLDER/scripts/dropbox.sh
+"$DOTFILES_FOLDER/scripts/dropbox.sh"
+
+# keeagent PPA
+sudo add-apt-repository --yes ppa:dlech/keepass2-plugins
+sudo apt-get update
 
 # Install a few packages
 PACKAGES=(
@@ -41,6 +45,10 @@ PACKAGES=(
   python-pip
   youtube-dl
   ffmpeg
+  keepass2
+  xdotool
+  keepass2-plugin-keeagent
+  flashplugin-installer
 )
 
 sudo apt-get install -y "${PACKAGES[@]}"

@@ -16,4 +16,4 @@ dropbox stop
 dropbox start
 
 # Close restart notification
-pkill update-notifier
+pkill update-notifier || true

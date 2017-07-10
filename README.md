@@ -21,7 +21,6 @@ wget -qO- https://raw.githubusercontent.com/7fELF/dotfiles/master/install.sh | s
 - https://wiki.archlinux.org/index.php/default_applications
 - powertop / tlp
 - speed up animations
-- keepass2 (config/keepass) / xdotool / keeagent
 - http://askubuntu.com/questions/294901/how-to-disable-recent-files-folder-in-nautilus
 - https://github.com/sjl/badwolf/
 - https://en.wikipedia.org/wiki/Swappiness

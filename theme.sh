@@ -28,6 +28,8 @@ mkdir -p "$HOME/Downloads" "$HOME/repos" "$HOME/Videos"
 $LN "$DOTFILES_FOLDER/config/user-dirs.dirs" "$HOME/.config/user-dirs.dirs"
 rm -d -f "$HOME/Desktop" "$HOME/Music" "$HOME/Public" "$HOME/Templates" "$HOME/Pictures" "$HOME/Documents"
 
+$DOTFILES_FOLDER/scripts/dropbox.sh
+
 # Install a few packages
 PACKAGES=(
   zsh

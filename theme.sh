@@ -20,6 +20,14 @@ link_folder icons
 # Setup the fonts folder
 link_folder fonts
 
+# Copy Keepass default configuration
+# not using a symlink because Keepass is adding things in this file
+rm -rf "$HOME/.config/KeePass"
+cp -r "$DOTFILES_FOLDER/config/KeePass" "$HOME/.config/"
+
+# VLC Settings
+link_folder config/vlc
+
 # Gtk3 settings (dark mode)
 link_folder "config/gtk-3.0"
 

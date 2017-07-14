@@ -73,3 +73,10 @@ Exec=env DRI_PRIME=1 firefox %u
 ```
 - Dropbox
 - Gparted
+- fstab
+```
+# <file system>                                 <mount point>   <type>  <options>                               <dump>  <pass>
+UUID=00000000-0000-0000-0000-000000000000       /               ext4    async,discard,noatime,errors=remount-ro	0       1
+UUID=00000000-0000-0000-0000-000000000000       /home           ext4    async,discard,noatime,defaults	        0       2
+# UUID="8ad2bc34-3998-43fc-bb09-69391833e437"   /var/lib/docker btrfs   defaults	                              0       0
+```

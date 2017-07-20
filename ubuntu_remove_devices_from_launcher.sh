@@ -10,14 +10,17 @@ function write_array_el {
   unset UUID LABEL
 }
 
-res=$(blkid -o export -s UUID -s LABEL -d |
-while read line; do
-  if [ ! -z "$line" ]; then
-    eval "$(echo "$line" | sed "s/=/=\"/" | sed "s/$/\"/")"
-  fi
-  if [ ! -z "$UUID" ]; then
-    write_array_el
-  fi
-done)
+function generate_devices_list {
+  blkid -o export -s UUID -s LABEL -d |
+  while read line; do
+    if [ ! -z "$line" ]; then
+      eval "$(echo "$line" | sed "s/=/=\"/" | sed "s/$/\"/")"
+    fi
+    if [ ! -z "$UUID" ]; then
+      write_array_el
+    fi
+  done
+}
 
-echo -e "[/]\nblacklist=[$res]" | dconf load /com/canonical/unity/devices/
+list=$(generate_devices_list)
+echo -e "[/]\nblacklist=[$list]" | dconf load /com/canonical/unity/devices/

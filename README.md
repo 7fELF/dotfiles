@@ -67,11 +67,10 @@ ResultActive=yes
 - .emacs
 - apt disable recomends
 
-firefox.desktop GPU DRI PRIME
+- firefox.desktop GPU DRI PRIME
 ```
 Exec=env DRI_PRIME=1 firefox %u
 ```
-- Dropbox
 - Gparted
 - fstab
 ```

@@ -44,7 +44,7 @@ let &t_AB="\e[48;5;%dm"
 let &t_AF="\e[38;5;%dm"
 
 set rtp+=~/.vim/bundle/Vundle.vim
-call plug#begin()
+call plug#begin("~/.vim_plugins")
 
 " Defaults everyone can agree on
 Plug 'tpope/vim-sensible'
@@ -56,7 +56,7 @@ Plug 'fatih/vim-go'
 Plug 'editorconfig/editorconfig-vim'
 " A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
 Plug 'airblade/vim-gitgutter'
-" Dokcer syntax
+" Docker syntax
 Plug 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 " Use gcc to comment out a line
 Plug 'tpope/vim-commentary'

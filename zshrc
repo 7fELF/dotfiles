@@ -48,6 +48,11 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -alh'
 
+# Watch
+# -d Highlight the differences between successive updates.
+# -c Interpret ANSI color and style sequences.
+alias watch='watch -dc'
+
 # Stop noisy hard drive
 alias ftg='sudo hdparm -Y /dev/sda && sudo hdparm -C /dev/sda'
 

@@ -6,6 +6,7 @@ LN="ln -sf"
 
 PACKAGES=(
   git
+  curl wget
   vim
   rsync
   htop

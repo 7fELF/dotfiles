@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-DOTFILES_FOLDER="$PWD/$(dirname "$0")"
+DOTFILES_FOLDER="$(dirname "$(realpath "$0")")"
 LN="ln -sf"
 
 PACKAGES=(

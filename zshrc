@@ -73,9 +73,21 @@ export MANWIDTH=90
 # Node.js
 export NODE_ENV=development
 
-# NVM
+# NVM Lazyload
+# https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/d5ib9fs/
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+NODE_GLOBALS+=("node" "nvm")
+
+load_nvm () {
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+}
+
+for cmd in "${NODE_GLOBALS[@]}"; do
+    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
+done
 
 # Opam OCaml package manager
 . /home/antoine/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
@@ -122,15 +134,7 @@ ZSH_CUSTOM="$HOME/dotfiles/zsh_custom"
 # Hide username in prompt
 DEFAULT_USER="$USER"
 
-# Plugins
-plugins=(git)
-plugins=(docker)
-plugins=(docker-compose)
-plugins=(npm)
-plugins=(nvm)
-plugins=(node)
-plugins=(rsync)
-plugins=(tmux)
+plugins=(httpie gitfast git-extras rsync golang)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -150,4 +154,3 @@ export PATH=${PATH}:${ANDROID_HOME}/tools
 # Golang
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/repos/go
-

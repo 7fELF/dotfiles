@@ -15,6 +15,19 @@ function watchrepo {
   done;
 }
 
+# Suffix aliases are supported in zsh since version 4.2.0.
+#
+TEXT_FILES_SUFFIXES=(c cpp h go txt conf cfg ini md html css json)
+for suffix in ${TEXT_FILES_SUFFIXES[@]}; do
+    alias -s "$suffix"=vim
+done
+
+# Global aliases.
+# Substituted anywhere on a line.
+
+alias -g G='|grep'
+alias -g W='while :; do'
+
 # Youtube-dl
 alias yd='youtube-dl \
   --write-sub \
@@ -65,10 +78,9 @@ export MANPAGER="/bin/sh -c \"col -b -x | \
   -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
   -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
 
+export MANWIDTH=90
 
 export BROWSER="firefox"
-
-export MANWIDTH=90
 
 # Node.js
 export NODE_ENV=development

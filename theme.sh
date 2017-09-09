@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-DOTFILES_FOLDER="$PWD/$(dirname "$0")"
+DOTFILES_FOLDER="$(dirname "$(realpath "$0")")"
 LN="ln -sf"
 
 function link_folder {
@@ -40,6 +40,13 @@ rm -d -f "$HOME/Desktop" "$HOME/Music" "$HOME/Public" "$HOME/Templates" "$HOME/P
 
 # keeagent PPA
 sudo add-apt-repository --yes ppa:dlech/keepass2-plugins
+# hh PPA
+sudo add-apt-repository --yes ppa:ultradvorka/ppa
+# nnn and googler PPA
+sudo add-apt-repository --yes ppa:twodopeshaggy/jarun
+# Handbrake PPA
+sudo add-apt-repository ppa:stebbins/handbrake-releases
+
 sudo apt-get update
 
 # Install a few packages
@@ -53,10 +60,17 @@ PACKAGES=(
   python-pip
   youtube-dl
   ffmpeg
+  handbrake-gtk
+  handbrake-cli
   keepass2
   xdotool
   keepass2-plugin-keeagent
   flashplugin-installer
+  hh
+  netsurf-gtk
+  uzbl
+  nnn
+  googler
 )
 
 sudo apt-get install -y "${PACKAGES[@]}"

@@ -45,7 +45,7 @@ sudo add-apt-repository --yes ppa:ultradvorka/ppa
 # nnn and googler PPA
 sudo add-apt-repository --yes ppa:twodopeshaggy/jarun
 # Handbrake PPA
-sudo add-apt-repository ppa:stebbins/handbrake-releases
+sudo add-apt-repository --yes ppa:stebbins/handbrake-releases
 
 sudo apt-get update
 

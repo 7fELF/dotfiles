@@ -23,4 +23,5 @@ function generate_devices_list {
 }
 
 list=$(generate_devices_list)
+dconf reset -f /com/canonical/unity/devices/
 echo -e "[/]\nblacklist=[$list]" | dconf load /com/canonical/unity/devices/

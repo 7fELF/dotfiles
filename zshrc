@@ -166,3 +166,11 @@ export PATH=${PATH}:${ANDROID_HOME}/tools
 # Golang
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/repos/go
+
+# Make zsh know about hosts already accessed by SSH
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+
+# https://github.com/dvorka/hstr
+export HISTFILE=$HOME/.zsh_history
+export HH_CONFIG=hicolor
+bindkey -s "\C-r" "\eqhh\n"

@@ -71,6 +71,7 @@ PACKAGES=(
   uzbl
   nnn
   googler
+  gparted
 )
 
 sudo apt-get install -y "${PACKAGES[@]}"

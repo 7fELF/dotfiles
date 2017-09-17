@@ -71,7 +71,6 @@ ResultActive=yes
 ```
 Exec=env DRI_PRIME=1 firefox %u
 ```
-- Gparted
 - fstab
 ```
 # <file system>                                 <mount point>   <type>  <options>                               <dump>  <pass>

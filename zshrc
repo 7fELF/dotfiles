@@ -93,7 +93,6 @@ declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholena
 NODE_GLOBALS+=("node" "nvm")
 
 load_nvm () {
-    export NVM_DIR=~/.nvm
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 }
 

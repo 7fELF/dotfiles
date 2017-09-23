@@ -122,13 +122,7 @@ function ungit() {
   $UNGIT_PATH
 }
 
-# parse json
-# send key to retrive in params
-# json "['key1']['key3']"
-function json {
-  export PYTHONIOENCODING=utf8
-  python -c "import sys, json; print json.load(sys.stdin)$1"
-}
+alias json='jq'
 
 function loop {
   echo "→ while :; do $@; sleep 1; done"

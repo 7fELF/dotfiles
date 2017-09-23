@@ -17,6 +17,7 @@ PACKAGES=(
   tree
   links
   shellcheck
+  jq
 )
 
 if [ -x "$(command -v apt-get)" ]; then

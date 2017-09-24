@@ -46,6 +46,8 @@ sudo add-apt-repository --yes ppa:ultradvorka/ppa
 sudo add-apt-repository --yes ppa:twodopeshaggy/jarun
 # Handbrake PPA
 sudo add-apt-repository --yes ppa:stebbins/handbrake-releases
+# Firefox beta
+sudo add-apt-repository --yes ppa:mozillateam/firefox-next
 
 sudo apt-get update
 

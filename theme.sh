@@ -48,6 +48,8 @@ sudo add-apt-repository --yes ppa:twodopeshaggy/jarun
 sudo add-apt-repository --yes ppa:stebbins/handbrake-releases
 # Firefox beta
 sudo add-apt-repository --yes ppa:mozillateam/firefox-next
+# Upstream vim
+sudo add-apt-repository --yes ppa:jonathonf/vim
 
 sudo apt-get update
 
@@ -58,6 +60,7 @@ PACKAGES=(
   redshift
   vlc
   firefox
+  vim
   vim-gtk
   python-pip
   youtube-dl

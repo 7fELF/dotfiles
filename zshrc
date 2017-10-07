@@ -145,8 +145,8 @@ export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
 
 # Golang
-export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/repos/go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 # Make zsh know about hosts already accessed by SSH
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'

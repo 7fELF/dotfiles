@@ -32,7 +32,6 @@ done
 
 # Global aliases.
 # Substituted anywhere on a line.
-
 alias -g G='|grep'
 alias -g W='while :; do'
 
@@ -44,7 +43,6 @@ alias yd='youtube-dl \
   --sub-format srt \
   --sub-lang en \
   -o "%(title)s/%(title)s-%(id)s.%(ext)s"'
-
 alias yd_mp3='yd -x --audio-format mp3'
 alias yd_wav='yd -x --audio-format wav'
 
@@ -65,6 +63,7 @@ alias ns_auth='ns_auth -u baudra_a'
 alias emacs='emacs -nw'
 
 # ls
+alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -alh'
@@ -110,25 +109,6 @@ done
 
 # Opam OCaml package manager
 . /home/antoine/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
-# Ungit
-UNGIT_PATH=$(sh -c "which ungit")
-function ungit() {
-  if ! curl -s 127.0.0.1:8448 > /dev/null; then
-    echo "Ungit not started, starting ungit..."
-    forever start "$UNGIT_PATH" \
-      --no-launchBrowser  \
-      --allowedIPs "[::ffff:127.0.0.1, ::1, 127.0.0.1]"
-    echo -n "Waiting for ungit to start"
-    while ! curl -s 127.0.0.1:8448 > /dev/null; do
-      echo -n "."
-      sleep 1
-    done
-    echo
-  fi
-  echo "Opening ungit..."
-  $UNGIT_PATH
-}
 
 alias json='jq'
 

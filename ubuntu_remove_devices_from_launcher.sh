@@ -11,7 +11,7 @@ function write_array_el {
 }
 
 function generate_devices_list {
-  blkid -o export -s UUID -s LABEL -d |
+  sudo blkid -o export -s UUID -s LABEL -d |
   while read line; do
     if [ ! -z "$line" ]; then
       eval "$(echo "$line" | sed "s/=/=\"/" | sed "s/$/\"/")"

@@ -102,15 +102,15 @@ function HeaderCreate(new)
     setl fo-=o fo-=r fo-=a fo-=c
     setl noautoindent nosmartindent nocindent
     execute "normal! ggO" .
-      \ s:cs . "\n".
-      \ s:cc . expand("%:t") . s:txt_for . expand("%:p:h:t") . s:txt_in . expand("%:p:h") . "\n".
-      \ s:ccc . "\n".
-      \ s:cc . s:txt_made_by . s:name . "\n".
-      \ s:cc . s:txt_login . s:txt_mail_s . s:login . s:txt_mail_e . "\n".
-      \ s:ccc . "\n".
-      \ s:cc . s:txt_start . strftime(s:date_format) .' '. s:name . "\n".
-      \ s:cc . s:txt_last . strftime(s:date_format) .' '. s:name . "\n".
-      \ s:ce
+          \ s:cs . "\n".
+          \ s:cc . expand("%:t") . s:txt_for . expand("%:p:h:t") . s:txt_in . expand("%:p:h") . "\n".
+          \ s:ccc . "\n".
+          \ s:cc . s:txt_made_by . s:name . "\n".
+          \ s:cc . s:txt_login . s:txt_mail_s . s:login . s:txt_mail_e . "\n".
+          \ s:ccc . "\n".
+          \ s:cc . s:txt_start . strftime(s:date_format) .' '. s:name . "\n".
+          \ s:cc . s:txt_last . strftime(s:date_format) .' '. s:name . "\n".
+          \ s:ce
     if getline(10) !~ '^\s*$'
       execute "normal! 10"
       execute "normal! o"
@@ -137,11 +137,11 @@ endfunction
 
 function ProtectHeaders()
   let filename = substitute(toupper(expand("%:t")), "\\.", "_", "g") . "_"
-    execute "normal! Go" .
-      \ '#ifndef '. filename . "\n".
-      \ '# define ' . filename . "\n".
-      \ "\n\n\n".
-      \ '#endif /* !' . filename . ' */'
+  execute "normal! Go" .
+        \ '#ifndef '. filename . "\n".
+        \ '# define ' . filename . "\n".
+        \ "\n\n\n".
+        \ '#endif /* !' . filename . ' */'
   normal! kk
 endfunction
 

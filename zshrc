@@ -1,8 +1,17 @@
 # Aliases
 alias p='ping 8.8.8.8'
 function diff { git diff --no-index $1 $2 }
-alias v='vim'
+
+# VIM
+if which gvim > /dev/null; then
+    alias vim='gvim'
+    alias v='gvim --remote'
+else
+    alias v='vim'
+fi
 alias vdiff='vim -d'
+
+# Git
 function watchrepo {
   while :; do
     clear
@@ -16,7 +25,6 @@ function watchrepo {
 }
 
 # Suffix aliases are supported in zsh since version 4.2.0.
-#
 TEXT_FILES_SUFFIXES=(c cpp h go txt conf cfg ini md html css json)
 for suffix in ${TEXT_FILES_SUFFIXES[@]}; do
     alias -s "$suffix"=vim

@@ -14,12 +14,17 @@ wget -qO- https://raw.githubusercontent.com/7fELF/dotfiles/master/install.sh | s
 ```
 
 ## TODO
-
+### Vim
+- Install Go
+- Install Linters tools for w0rp/ale (For Go)
+- Install Linters tools for w0rp/ale (for other languages)
+- Set up YouCompleteMe
+- Set up vim-man remaps
+- Install `ctags` and `go get -u github.com/jstemmer/gotags` to intall tagbar
+### Others
 - disable sounds
 - map caps lock as a esc
 - powertop / tlp
-- https://github.com/sjl/badwolf/
-- https://en.wikipedia.org/wiki/Swappiness
 - upgrade vim plugins in run.sh
 - append at the end of /etc/sysctl.conf or in /etc/sysctl.d
 ```

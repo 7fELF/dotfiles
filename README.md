@@ -24,6 +24,7 @@ wget -qO- https://raw.githubusercontent.com/7fELF/dotfiles/master/install.sh | s
 - Create deus and jellybeans themes for terminator
 - Find an easy way to switch themes in vim/terminator
 ### Others
+- Remove Flash
 - https://github.com/Diaoul/subliminal
 - disable sounds
 - map caps lock as a esc

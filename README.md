@@ -20,7 +20,9 @@ wget -qO- https://raw.githubusercontent.com/7fELF/dotfiles/master/install.sh | s
 - Install Linters tools for w0rp/ale (for other languages)
 - Set up YouCompleteMe
 - Set up vim-man remaps
-- Install `ctags` and `go get -u github.com/jstemmer/gotags` to intall tagbar
+- Install `ctags` and `go get -u github.com/jstemmer/gotags` to install tagbar
+- Create deus and jellybeans themes for terminator
+- Find an easy way to switch themes in vim/terminator
 ### Others
 - https://github.com/Diaoul/subliminal
 - disable sounds

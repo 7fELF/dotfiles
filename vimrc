@@ -34,7 +34,9 @@ Plug 'Valloric/YouCompleteMe'
 " A tree explorer plugin for vim.
 Plug 'scrooloose/nerdtree'
 " Color scheme
-Plug 'ajmwagar/vim-deus'
+Plug '7fELF/vim-deus'
+Plug 'nanotech/jellybeans.vim'
+Plug 'morhetz/gruvbox'
 " Show the list of buffers in the command bar
 Plug 'bling/vim-bufferline'
 " Dark powered asynchronous unite all interfaces for Neovim/Vim8
@@ -53,24 +55,15 @@ let &t_AB="\e[48;5;%dm"
 let &t_AF="\e[38;5;%dm"
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-set termguicolors
 
 " Colors
-colorscheme deus
-let g:colors_name = "deus"
+" let g:colors_name = "deus"
+let g:colors_name = "gruvbox"
+" let g:colors_name = "jellybeans"
+" set termguicolors
+set background=dark
 let g:deus_termcolors=256
-
-" GVim font
-set guifont=Hack\ 12
-
-"remove menu bar
-set guioptions-=m
-"remove toolbar
-set guioptions-=T
-"remove right-hand scroll bar
-set guioptions-=r
-"remove left-hand scroll bar
-set guioptions-=L
+execute 'colorscheme ' . g:colors_name
 
 " Airline settings
 "
@@ -80,12 +73,20 @@ let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#show_close_button = 0
-let g:airline_theme='deus'
+let g:airline_theme=g:colors_name
 
-" Setting dark mode
-set background=dark
-colorscheme deus
-let g:deus_termcolors=256
+" GVim
+"
+" font
+set guifont=Hack\ 12
+"remove menu bar
+set guioptions-=m
+"remove toolbar
+set guioptions-=T
+"remove right-hand scroll bar
+set guioptions-=r
+"remove left-hand scroll bar
+set guioptions-=L
 
 filetype plugin indent on
 syntax on

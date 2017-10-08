@@ -1,6 +1,12 @@
 [global_config]
-  enabled_plugins = InactivityWatch, CustomCommandsMenu, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, LaunchpadBugURLHandler
-  title_font = Input Mono Light 9
+  enabled_plugins = CustomCommandsMenu, InactivityWatch, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, LaunchpadBugURLHandler
+  title_font = Hack Bold 12
+  title_inactive_bg_color = "#3c3836"
+  title_inactive_fg_color = "#efd9b4"
+  title_receive_bg_color = "#458588"
+  title_receive_fg_color = "#a1cbcc"
+  title_transmit_bg_color = "#cc241d"
+  title_transmit_fg_color = "#f38d8e"
   title_use_system_font = False
 [keybindings]
 [layouts]
@@ -15,14 +21,26 @@
 [plugins]
 [profiles]
   [[default]]
-    background_color = "#141312"
-    background_darkness = 1.11
+    background_color = "#282828"
     background_image = None
     cursor_blink = False
-    cursor_color = "#4c4c4c"
-    font = Hack 10
-    foreground_color = "#a99ca0"
-    palette = "#000000:#aa0000:#00aa00:#aa5500:#5959d7:#aa00aa:#00aaaa:#aaaaaa:#808080:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    cursor_color = "#504945"
+    font = Hack 12
+    foreground_color = "#fbf1c7"
+    palette = "#282828:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#a89984:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
+    scroll_background = False
+    scroll_on_output = False
+    scrollback_lines = 10000
+    split_to_group = True
+    use_system_font = False
+  [[gruvbox]]
+    background_color = "#282828"
+    background_image = None
+    cursor_blink = False
+    cursor_color = "#3c3836"
+    font = Hack 12
+    foreground_color = "#fbf1c7"
+    palette = "#282828:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#a89984:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
     scroll_background = False
     scroll_on_output = False
     scrollback_lines = 10000

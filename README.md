@@ -22,6 +22,7 @@ wget -qO- https://raw.githubusercontent.com/7fELF/dotfiles/master/install.sh | s
 - Set up vim-man remaps
 - Install `ctags` and `go get -u github.com/jstemmer/gotags` to intall tagbar
 ### Others
+- https://github.com/Diaoul/subliminal
 - disable sounds
 - map caps lock as a esc
 - powertop / tlp

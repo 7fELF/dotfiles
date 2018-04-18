@@ -15,6 +15,7 @@ wget -qO- https://raw.githubusercontent.com/7fELF/dotfiles/master/install.sh | s
 
 ## TODO
 ### Vim
+- `let g:gruvbox_italic = 0`
 - Install Go
 - Install Linters tools for w0rp/ale (For Go)
 - Install Linters tools for w0rp/ale (for other languages)

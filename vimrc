@@ -37,15 +37,24 @@ Plug 'scrooloose/nerdtree'
 Plug '7fELF/vim-deus'
 Plug 'nanotech/jellybeans.vim'
 Plug 'morhetz/gruvbox'
-" Show the list of buffers in the command bar
-Plug 'bling/vim-bufferline'
 " Dark powered asynchronous unite all interfaces for Neovim/Vim8
 Plug 'Shougo/denite.nvim'
 "  View and grep man pages in vim
 Plug 'vim-utils/vim-man'
 " Vim plugin that displays tags in a window, ordered by scope
 Plug 'majutsushi/tagbar'
-
+" Run bash in vim
+" Plug 'oplatek/Conque-Shell'
+" Delete buffers and close files in Vim without closing your windows or messing up your layout.
+Plug 'moll/vim-bbye'
+" Continuously updated session files
+Plug 'tpope/vim-obsession'
+" Easily search for, substitute, and abbreviate multiple variants of a word
+Plug 'tpope/vim-abolish'
+" Fuzzy file, buffer, mru, tag, etc finder
+Plug 'ctrlpvim/ctrlp.vim'
+" UltiSnips - The ultimate snippet solution for Vim
+Plug 'SirVer/ultisnips'
 
 call plug#end()
 
@@ -56,6 +65,9 @@ let &t_AF="\e[38;5;%dm"
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
+" Enable mouse
+set mouse=a
+
 " Colors
 " let g:colors_name = "deus"
 let g:colors_name = "gruvbox"
@@ -65,13 +77,21 @@ set background=dark
 let g:deus_termcolors=256
 execute 'colorscheme ' . g:colors_name
 
+"" Spell Checking
+" set spell
+" set spelllang=en
+
 " Airline settings
 "
 set laststatus=2
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
+
+" disable displaying tabs, regardless of number.
+let g:airline#extensions#tabline#show_tabs = 0
+
 " Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#fnamemod = '%:.'
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline_theme=g:colors_name
 
@@ -113,6 +133,7 @@ vnoremap <C-c> "*y
 " search remap
 nnoremap / /\v
 nnoremap ; :
+vnoremap // y/<C-R>"<CR>
 
 nnoremap <Leader>t :Tagbar<CR>
 
@@ -123,7 +144,6 @@ set undolevels=1000
 set relativenumber
 "Show the absolute line number at the cursor position
 set number
-
 set noshowmode
 
 let g:epitech_header = 1
@@ -145,6 +165,9 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_highlight_types = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 0
 
 " YCM
 let g:ycm_add_preview_to_completeopt = 1
@@ -155,9 +178,23 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:go_def_mapping_enabled = 0
 let g:go_fmt_command = "goimports"
 
+" let g:go_info_mode = 'guru'
+let g:go_info_mode = 'gocode'
+
+let g:go_guru_scope = ["."]
+" let g:go_auto_sameids = 1
+
 noremap <Leader>gd :GoDef<CR>
-noremap <Leader>gr :GoRun<CR>
+noremap <Leader>gt :GoDefPop<CR>
+noremap <Leader>gf :GoInfo<CR>
+noremap <Leader>gr :GoImplements<CR>
 noremap <Leader>gc :GoCallers<CR>
+noremap <Leader>j :GoDecls<CR>
+noremap <Leader>i :GoDeclsDir<CR>
+" show the type info (|:GoInfo|) for the word under the cursor automatically
+let g:go_auto_type_info = 1
+let g:go_metalinter_autosave = 0
+let g:go_metalinter_autosave_enabled = ['errcheck']
 
 set modelines=0
 syntax enable
@@ -233,13 +270,18 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 
-" Buffers
+" Windows
 nnoremap <leader>T :enew<cr>
 nnoremap fr :tabnext<CR>
 nnoremap ft :tabprevious<cr>
+nnoremap fd :q<cr>
+
+" Buffers
 nnoremap gt :bnext<CR>
 nnoremap gr :bprevious<cr>
-nnoremap gd :bdelete<cr>
+" Bdelete is a command from moll/vim-bbye
+nnoremap gd :Bdelete<cr>
+
 "inoremap <right> <nop>
 "inoremap <up> <nop>
 "inoremap <down> <nop>l :ls<CR>

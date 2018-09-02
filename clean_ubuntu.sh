@@ -24,6 +24,8 @@ PACKAGES=(
   unity-webapps-common
   "remmina-*"
   vino
+  gnome-software
+  deja-dup
 )
 
 sudo apt autoremove -y "${PACKAGES[@]}"

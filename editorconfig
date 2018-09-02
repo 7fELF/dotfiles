@@ -4,16 +4,17 @@ root = true
 [*]
 max_line_length = 100
 indent_style = space
-indent_size = 2
+indent_size = 4
 end_of_line = lf
 tab_width = 4
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
+max_line_length = off
 
 [*.c]
 max_line_length = 80
-tab_width = 8
+indent_size = 4
 
 [*.h]
 max_line_length = 80
@@ -21,7 +22,7 @@ tab_width = 8
 
 [*.yml]
 indent_style = space
-indent_size = 4
+indent_size = 2
 
 [*.md]
 trim_trailing_whitespace = false
@@ -29,6 +30,11 @@ trim_trailing_whitespace = false
 [*.go]
 indent_style = tab
 tab_width = 4
+indent_size = 4
+
+[*.html]
+max_line_length = off
+indent_style = tab
 indent_size = 4
 
 [Makefile]

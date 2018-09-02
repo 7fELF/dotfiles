@@ -1,3 +1,6 @@
 set relativenumber
 set number
 set textwidth=100
+
+nnoremap gcc :action CommentByLineComment<CR>
+vnoremap gcc :action CommentByBlockComment<CR>

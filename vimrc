@@ -11,7 +11,7 @@ Plug 'tpope/vim-sensible'
 " Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
 " Go development plugin for Vim
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 " EditorConfig plugin for Vim
 Plug 'editorconfig/editorconfig-vim'
 " A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
@@ -55,6 +55,8 @@ Plug 'tpope/vim-abolish'
 Plug 'ctrlpvim/ctrlp.vim'
 " UltiSnips - The ultimate snippet solution for Vim
 Plug 'SirVer/ultisnips'
+" Tame the quickfix window
+Plug 'romainl/vim-qf'
 
 call plug#end()
 
@@ -178,23 +180,42 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:go_def_mapping_enabled = 0
 let g:go_fmt_command = "goimports"
 
+" Auto save befor running :make or :GoBuild
+set autowrite
+
+" https://github.com/fatih/vim-go-tutorial#vimrc-improvements
+let g:go_list_type = "quickfix"
+nnoremap <C-m> :cnext<CR>
+nnoremap <S-M> :cprevious<CR>
+nnoremap <leader>n :cclose<CR>
+
+
+
+let g:go_guru_scope = ["."]
+let g:go_auto_sameids = 1
+
+autocmd filetype go noremap <Leader>gd :GoDef<CR>
+autocmd filetype go noremap <Leader>gt :GoDefPop<CR>
+autocmd filetype go noremap <Leader>gf :GoDoc<CR>
+autocmd filetype go noremap <Leader>gr :GoImplements<CR>
+autocmd filetype go noremap <Leader>gc :GoCallers<CR>
+autocmd filetype go noremap <Leader>gb :GoFill<CR>
+autocmd filetype go noremap <Leader>ge :GoIfErr<CR>
+autocmd filetype go noremap <Leader>j :GoDecls<CR>
+autocmd filetype go noremap <Leader>i :GoDeclsDir<CR>
+autocmd filetype go nmap <leader>b  <Plug>(go-build)
+
+" show the type info (|:GoInfo|) for the word under the cursor automatically
+let g:go_auto_type_info = 1
+set updatetime=100
 " let g:go_info_mode = 'guru'
 let g:go_info_mode = 'gocode'
 
-let g:go_guru_scope = ["."]
-" let g:go_auto_sameids = 1
-
-noremap <Leader>gd :GoDef<CR>
-noremap <Leader>gt :GoDefPop<CR>
-noremap <Leader>gf :GoInfo<CR>
-noremap <Leader>gr :GoImplements<CR>
-noremap <Leader>gc :GoCallers<CR>
-noremap <Leader>j :GoDecls<CR>
-noremap <Leader>i :GoDeclsDir<CR>
-" show the type info (|:GoInfo|) for the word under the cursor automatically
-let g:go_auto_type_info = 1
-let g:go_metalinter_autosave = 0
-let g:go_metalinter_autosave_enabled = ['errcheck']
+" Auto lint on save
+ let g:qf_auto_open_quickfix = 0
+let g:go_metalinter_autosave = 1
+" let g:go_metalinter_autosave_enabled = ['errcheck']
+let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
 
 set modelines=0
 syntax enable

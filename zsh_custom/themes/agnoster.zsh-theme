@@ -165,7 +165,14 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment blue black '%~'
+
+if repo=$(git rev-parse --show-toplevel 2> /dev/null); then
+  prompt_segment black white "$(basename $repo)"
+  [[ $PWD == $repo ]] || prompt_segment blue black "${PWD#$repo}"
+else
+  prompt_segment blue black "%~"
+fi
+
 }
 
 # Virtualenv: current working virtualenv

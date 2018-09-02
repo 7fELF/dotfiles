@@ -1,4 +1,4 @@
-###
+﻿###
 ###  vlc 2.2.2
 ###
 
@@ -1036,7 +1036,7 @@
 [sharpen] # Sharpen video filter
 
 # Sharpen strength (0-2) (float)
-#sharpen-sigma=0.050000
+sharpen-sigma=0.360000
 
 [atmo] # AtmoLight Filter
 
@@ -1098,13 +1098,13 @@
 #atmo-zone-summary=0
 
 # Edge weightning (integer)
-#atmo-edgeweightning=3
+atmo-edgeweightning=30
 
 # Brightness (integer)
-#atmo-brightness=100
+atmo-brightness=300
 
 # Darkness limit (integer)
-#atmo-darknesslimit=3
+atmo-darknesslimit=7
 
 # Hue windowing (integer)
 #atmo-huewinsize=3
@@ -1113,16 +1113,16 @@
 #atmo-satwinsize=3
 
 # Output Color filter mode (integer)
-#atmo-filtermode=1
+atmo-filtermode=2
 
 # Filter length (ms) (integer)
-#atmo-meanlength=300
+atmo-meanlength=4898
 
 # Filter threshold (integer)
-#atmo-meanthreshold=40
+atmo-meanthreshold=100
 
 # Filter smoothness (%) (integer)
-#atmo-percentnew=50
+atmo-percentnew=100
 
 # Frame delay (ms) (integer)
 #atmo-framedelay=18
@@ -1182,7 +1182,7 @@
 #atmo-height=48
 
 # Mark analyzed pixels (boolean)
-#atmo-showdots=0
+atmo-showdots=1
 
 [antiflicker] # antiflicker video filter
 
@@ -1328,10 +1328,10 @@
 #colorthres-color=16711680
 
 # Saturation threshold (integer)
-#colorthres-saturationthres=20
+colorthres-saturationthres=0
 
 # Similarity threshold (integer)
-#colorthres-similaritythres=15
+colorthres-similaritythres=99
 
 [bluescreen] # Bluescreen video filter
 
@@ -1350,10 +1350,10 @@
 [gradient] # Gradient video filter
 
 # Distort mode (string)
-#gradient-mode=gradient
+gradient-mode=edge
 
 # Gradient image type (integer)
-#gradient-type=0
+gradient-type=1
 
 # Apply cartoon effect (boolean)
 #gradient-cartoon=1
@@ -1401,12 +1401,12 @@
 [motionblur] # Motion blur filter
 
 # Blur factor (1-127) (integer)
-#blur-factor=80
+blur-factor=9
 
 [gradfun] # Gradfun video filter
 
 # Radius (integer)
-#gradfun-radius=16
+gradfun-radius=20
 
 # Strength (float)
 #gradfun-strength=1.200000
@@ -1457,7 +1457,7 @@
 [grain] # Grain video filter
 
 # Variance (float)
-#grain-variance=2.000000
+grain-variance=0.000000
 
 # Minimal period (integer)
 #grain-period-min=1
@@ -1468,19 +1468,19 @@
 [adjust] # Image properties filter
 
 # Image contrast (0-2) (float)
-#contrast=1.000000
+contrast=2.000000
 
 # Image brightness (0-2) (float)
-#brightness=1.000000
+brightness=1.530000
 
 # Image hue (0-360) (integer)
 #hue=0
 
 # Image saturation (0-3) (float)
-#saturation=1.000000
+saturation=1.880000
 
 # Image gamma (0-10) (float)
-#gamma=1.000000
+gamma=1.240000
 
 # Brightness threshold (boolean)
 #brightness-threshold=0
@@ -1603,7 +1603,7 @@
 [rotate] # Rotate video filter
 
 # Angle in degrees (float)
-#rotate-angle=30.000000
+rotate-angle=358.000000
 
 # Use motion sensors (boolean)
 #rotate-use-motion=0
@@ -1777,7 +1777,7 @@
 #equalizer-preset=flat
 
 # Bands gain (string)
-#equalizer-bands=
+equalizer-bands=-10.8 -10.8 -13.2 -7.5 -3.8 -0.8 -2.4 -2 0 -2.6
 
 # Two pass (boolean)
 #equalizer-2pass=0
@@ -4250,13 +4250,13 @@ key-jump+extrashort=Right
 #global-key-jump-short=
 
 # Short backwards jump (string)
-# key-jump-short=Left
+#key-jump-short=Alt+Left
 
 # Short forward jump (string)
 #global-key-jump+short=
 
 # Short forward jump (string)
-# key-jump+short=Right
+#key-jump+short=Alt+Right
 
 # Medium backwards jump (string)
 #global-key-jump-medium=

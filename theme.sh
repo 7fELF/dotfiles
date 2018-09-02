@@ -42,7 +42,7 @@ rm -d -f "$HOME/Desktop" "$HOME/Music" "$HOME/Public" "$HOME/Templates" "$HOME/P
 sudo add-apt-repository --yes ppa:dlech/keepass2-plugins
 # hh PPA
 sudo add-apt-repository --yes ppa:ultradvorka/ppa
-# nnn and googler PPA
+# nnn PPA
 sudo add-apt-repository --yes ppa:twodopeshaggy/jarun
 # Handbrake PPA
 sudo add-apt-repository --yes ppa:stebbins/handbrake-releases
@@ -50,6 +50,9 @@ sudo add-apt-repository --yes ppa:stebbins/handbrake-releases
 sudo add-apt-repository --yes ppa:mozillateam/firefox-next
 # Upstream vim
 sudo add-apt-repository --yes ppa:jonathonf/vim
+# Git
+sudo add-apt-repository --yes ppa:git-core/ppa
+
 
 sudo apt-get update
 
@@ -70,13 +73,10 @@ PACKAGES=(
   keepass2
   xdotool
   keepass2-plugin-keeagent
-  flashplugin-installer
   hh
-  netsurf-gtk
-  uzbl
   nnn
-  googler
   gparted
+  screenfetch
 )
 
 sudo apt-get install -y "${PACKAGES[@]}"
@@ -113,4 +113,3 @@ gsettings set org.gnome.settings-daemon.plugins.background active true
 # Remove devices from unity launcher
 "$DOTFILES_FOLDER"/ubuntu_remove_devices_from_launcher.sh
 
-firefox "about:accounts?action=signin"&

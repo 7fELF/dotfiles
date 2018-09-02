@@ -1,11 +1,27 @@
+# zmodload zsh/zprof
+
 # Aliases
 alias p='ping 8.8.8.8'
 function diff { git diff --no-index $1 $2 }
+## cd git repo root directory
+alias rr='cd $(git rev-parse --show-toplevel)'
+function gopkg {
+    cd $GOPATH/src/$1
+}
+
+function repo {
+    cd $HOME/repos/$1
+}
+
+function whoseport {
+    lsof -nPi:$1
+}
 
 # VIM
 if which gvim > /dev/null; then
-    alias vim='gvim'
-    alias v='gvim --remote'
+    VIM_SERVER_NAME='myserver'
+    alias vim='gvim --servername $VIM_SERVER_NAME'
+    alias v='gvim --servername $VIM_SERVER_NAME --remote'
 else
     alias v='vim'
 fi
@@ -16,7 +32,7 @@ function watchrepo {
   while :; do
     clear
     date
-    git lg | head -n $((LINES - 2))
+    git lg --color | head -n $((LINES - 2))
     if [ $(date "+%S") -eq 0 ]; then
       git fetch
     fi
@@ -25,9 +41,14 @@ function watchrepo {
 }
 
 # Suffix aliases are supported in zsh since version 4.2.0.
-TEXT_FILES_SUFFIXES=(c cpp h go txt conf cfg ini md html css json)
+TEXT_FILES_SUFFIXES=(c cpp h go txt conf cfg ini md html css json yml yaml toml)
 for suffix in ${TEXT_FILES_SUFFIXES[@]}; do
     alias -s "$suffix"=vim
+done
+
+ARCHIVE_FILES_SUFFIXES=(tar gz zip)
+for suffix in ${ARCHIVE_FILES_SUFFIXES[@]}; do
+    alias -s "$suffix"=file-roller
 done
 
 # Global aliases.
@@ -42,7 +63,7 @@ alias yd='youtube-dl \
   --write-thumbnail \
   --sub-format srt \
   --sub-lang en \
-  -o "%(title)s/%(title)s-%(id)s.%(ext)s"'
+  -o "%(uploader)s/%(title)s/%(title)s-%(id)s.%(ext)s"'
 alias yd_mp3='yd -x --audio-format mp3'
 alias yd_wav='yd -x --audio-format wav'
 
@@ -56,6 +77,7 @@ alias composer='docker run --rm -u $UID:$GID -v $(pwd):/app composer/composer'
 alias php='docker run --rm -ti php:7'
 alias cleanup_docker='docker ps -aq | xargs docker rm'
 alias cleanup_docker_images='docker rmi $(docker images --quiet --filter "dangling=true")'
+alias container-ip='docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}"'
 
 # Epitech
 alias blih='blih -u baudra_a'
@@ -67,6 +89,10 @@ alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -alh'
+
+# temp dir
+alias tmp='cd $(mktemp -d)'
+
 
 # Watch
 # -d Highlight the differences between successive updates.
@@ -96,25 +122,28 @@ export NODE_ENV=development
 # https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/d5ib9fs/
 export NVM_DIR="$HOME/.nvm"
 
-declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
-NODE_GLOBALS+=("node" "nvm")
+if [ -d "$NVM_DIR" ]; then
+  declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+  NODE_GLOBALS+=("node" "nvm")
 
-load_nvm () {
+  load_nvm () {
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-}
-
-for cmd in "${NODE_GLOBALS[@]}"; do
+  }
+  for cmd in "${NODE_GLOBALS[@]}"; do
     eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
-done
+  done
+else
+    echo "Warning: nvm not installed! (not found in $NVM_DIR)"
+fi
 
 # Opam OCaml package manager
-. /home/antoine/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+. $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 alias json='jq'
 
 function loop {
-  echo "→ while :; do $@; sleep 1; done"
-  while :; do $@; sleep 1; done
+  echo "→ while :; do $@; done"
+  while :; do eval $@; done
 }
 
 # robbyrussell/oh-my-zsh
@@ -127,7 +156,7 @@ ZSH_CUSTOM="$HOME/dotfiles/zsh_custom"
 # Hide username in prompt
 DEFAULT_USER="$USER"
 
-plugins=(httpie gitfast git-extras rsync golang)
+plugins=(httpie gitfast git-extras rsync golang kubectl docker docker-compose helm man terraform)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -138,7 +167,7 @@ alias termbin='ncat termbin.com 9999'
 bindkey \^U backward-kill-line
 
 # Java
-export PATH="$PATH:/usr/lib/jvm/jdk1.8.0/bin"
+export PATH="/usr/lib/jvm/jdk1.8.0/bin:$PATH"
 
 # Android
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -147,6 +176,8 @@ export PATH=${PATH}:${ANDROID_HOME}/tools
 # Golang
 export GOPATH=$HOME/repos/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+alias gosrc='cd $GOPATH/src'
+
 
 # Make zsh know about hosts already accessed by SSH
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
@@ -155,3 +186,8 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 export HISTFILE=$HOME/.zsh_history
 export HH_CONFIG=hicolor
 bindkey -s "\C-r" "\eqhh\n"
+
+alias kubectl='http_proxy="" kubectl'
+alias k='kubectl'
+
+# zprof

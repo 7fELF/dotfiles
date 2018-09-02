@@ -139,7 +139,7 @@
   default = simple
 [alias]
   co = checkout
-  br = branch -a
+  br = branch -a -v
   cm = commit
 
   lg = !"git lg1-specific --all"

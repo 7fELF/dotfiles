@@ -25,6 +25,8 @@ wget -qO- https://raw.githubusercontent.com/7fELF/dotfiles/master/install.sh | s
 - Create deus and jellybeans themes for terminator
 - Find an easy way to switch themes in vim/terminator
 ### Others
+- Calibre
+- https://stackoverflow.com/questions/878600/how-to-create-a-cron-job-using-bash
 - Remove Flash
 - https://github.com/Diaoul/subliminal
 - disable sounds
@@ -67,4 +69,4 @@ Identity=unix-user:*
 Action=org.freedesktop.login1.hibernate;org.freedesktop.login1.hibernate-multiple-sessions
 ResultActive=yes
 ```
-
+- https://askubuntu.com/questions/361151/disable-auto-mounting

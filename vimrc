@@ -1,9 +1,7 @@
 let mapleader = ","
-let g:neocomplete#enable_at_startup = 1
 set shell=bash
 
 " Plugins plugins plugins (plugins ?)
-set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin("~/.vim_plugins")
 
 " Defaults everyone can agree on
@@ -57,6 +55,9 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'SirVer/ultisnips'
 " Tame the quickfix window
 Plug 'romainl/vim-qf'
+
+" Typesript :(
+Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
@@ -130,7 +131,7 @@ noremap <Down> gj
 noremap <Up> gk
 
 " copy
-vnoremap <C-c> "*y
+vnoremap <C-c> "+y
 
 " search remap
 nnoremap / /\v
@@ -201,6 +202,7 @@ autocmd filetype go noremap <Leader>gr :GoImplements<CR>
 autocmd filetype go noremap <Leader>gc :GoCallers<CR>
 autocmd filetype go noremap <Leader>gb :GoFill<CR>
 autocmd filetype go noremap <Leader>ge :GoIfErr<CR>
+autocmd filetype go noremap <Leader>gk :GoKeyify<CR>
 autocmd filetype go noremap <Leader>j :GoDecls<CR>
 autocmd filetype go noremap <Leader>i :GoDeclsDir<CR>
 autocmd filetype go nmap <leader>b  <Plug>(go-build)
@@ -212,10 +214,11 @@ set updatetime=100
 let g:go_info_mode = 'gocode'
 
 " Auto lint on save
- let g:qf_auto_open_quickfix = 0
-let g:go_metalinter_autosave = 1
-" let g:go_metalinter_autosave_enabled = ['errcheck']
-let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
+let g:qf_auto_open_quickfix = 0
+let g:go_metalinter_autosave = 0
+let g:go_metalinter_autosave_enabled = ['vet', 'errcheck']
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_jump_to_error = 0
 
 set modelines=0
 syntax enable
@@ -224,8 +227,9 @@ set ruler
 
 set wildignore+=*.pdf,*.o,*.obj,*.jpg,*.png
 
+let g:ale_sign_column_always = 1
 let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
+let g:ale_sign_warning = '💡'
 
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
@@ -325,7 +329,6 @@ vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
 "inoremap <up> <nop>
 "inoremap <down> <nop>
 
-let g:ale_sign_column_always = 1
 
 augroup file_types
     autocmd!

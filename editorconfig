@@ -24,10 +24,19 @@ tab_width = 8
 indent_style = space
 indent_size = 2
 
+[*.proto]
+indent_style = space
+indent_size = 2
+
 [*.md]
 trim_trailing_whitespace = false
 
 [*.go]
+indent_style = tab
+tab_width = 4
+indent_size = 4
+
+[*.sh]
 indent_style = tab
 tab_width = 4
 indent_size = 4

@@ -1,21 +1,46 @@
 # zmodload zsh/zprof
 
 # Aliases
-alias p='ping 8.8.8.8'
-function diff { git diff --no-index $1 $2 }
-## cd git repo root directory
-alias rr='cd $(git rev-parse --show-toplevel)'
-function gopkg {
-    cd $GOPATH/src/$1
+function p {
+    if [ $# -eq 0 ]
+    then
+        ping 8.8.8.8
+    else
+        ping $@
+    fi
 }
+function diff { git diff --no-index $1 $2 }
+
+alias morty='ssh antoine@morty.antoine.network'
+
+alias dkr='docker run -ti --rm'
+
+# Exclude vendor from tree
+alias tree='tree --noreport -F -I vendor'
+
+## cd git repo root directory
+alias repo_root='git rev-parse --show-toplevel'
+alias rr='cd $(repo_root)'
+function todo {
+    if [ "$1" = "" ]
+    then
+        grep -rn "TODO" --exclude-dir "vendor" --exclude-dir ".git"
+    else
+        grep -rn "TODO($1)" --exclude-dir "vendor" --exclude-dir ".git"
+    fi
+}
+
+# Openstack
+alias os='openstack'
 
 function repo {
     cd $HOME/repos/$1
 }
 
 function whoseport {
-    lsof -nPi:$1
+    sudo lsof -nPi:$1
 }
+alias myip='curl --silent https://api.myip.com/ | jq .ip --raw-output'
 
 # VIM
 if which gvim > /dev/null; then
@@ -46,6 +71,8 @@ for suffix in ${TEXT_FILES_SUFFIXES[@]}; do
     alias -s "$suffix"=vim
 done
 
+alias -s "pdf"=evince
+
 ARCHIVE_FILES_SUFFIXES=(tar gz zip)
 for suffix in ${ARCHIVE_FILES_SUFFIXES[@]}; do
     alias -s "$suffix"=file-roller
@@ -64,8 +91,10 @@ alias yd='youtube-dl \
   --sub-format srt \
   --sub-lang en \
   -o "%(uploader)s/%(title)s/%(title)s-%(id)s.%(ext)s"'
-alias yd_mp3='yd -x --audio-format mp3'
-alias yd_wav='yd -x --audio-format wav'
+alias yd_mp3='youtube-dl -x --audio-format mp3 \
+    -o "%(title)s-%(id)s.%(ext)s"'
+alias yd_wav='youtube-dl -x --audio-format wav \
+    -o "%(title)s-%(id)s.%(ext)s"'
 
 # Power
 alias lock='gnome-screensaver-command -l'
@@ -172,11 +201,15 @@ export PATH="/usr/lib/jvm/jdk1.8.0/bin:$PATH"
 # Android
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
+ export PATH="$PATH:/opt/flutter/bin"
 
 # Golang
 export GOPATH=$HOME/repos/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-alias gosrc='cd $GOPATH/src'
+export GO111MODULE=off
+function gopkg {
+    cd $GOPATH/src/$1
+}
 
 
 # Make zsh know about hosts already accessed by SSH
@@ -184,7 +217,7 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 
 # https://github.com/dvorka/hstr
 export HISTFILE=$HOME/.zsh_history
-export HH_CONFIG=hicolor
+export HSTR_CONFIG=hicolor
 bindkey -s "\C-r" "\eqhh\n"
 
 alias kubectl='http_proxy="" kubectl'

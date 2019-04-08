@@ -18,6 +18,8 @@ PACKAGES=(
   links
   shellcheck
   jq
+  detox
+  rename
 )
 
 if [ -x "$(command -v apt-get)" ]; then

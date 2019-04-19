@@ -22,12 +22,18 @@ alias tree='tree --noreport -F -I vendor'
 alias repo_root='git rev-parse --show-toplevel'
 alias rr='cd $(repo_root)'
 function todo {
+    local query
     if [ "$1" = "" ]
     then
-        grep -rn "TODO" --exclude-dir "vendor" --exclude-dir ".git"
+        query="TODO"
     else
-        grep -rn "TODO($1)" --exclude-dir "vendor" --exclude-dir ".git"
+        query="TODO($1)"
     fi
+    grep -rn -I "$query" \
+        --exclude-dir "vendor" \
+        --exclude-dir ".git" \
+        --color=always  \
+        | sed "s/[ \t]*\(\/\/\|#\)[ \t]*//"
 }
 
 # Openstack

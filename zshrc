@@ -31,6 +31,7 @@ function todo {
     fi
     grep -rn -I "$query" \
         --exclude-dir "vendor" \
+        --exclude-dir "node_modules" \
         --exclude-dir ".git" \
         --color=always  \
         | sed "s/[ \t]*\(\/\/\|#\)[ \t]*//"

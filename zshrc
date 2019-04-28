@@ -80,7 +80,12 @@ done
 
 alias -s "pdf"=evince
 
-ARCHIVE_FILES_SUFFIXES=(tar gz zip)
+IMAGE_FILES_SUFFIXES=(jpg png gif)
+for suffix in ${IMAGE_FILES_SUFFIXES[@]}; do
+    alias -s "$suffix"=eog
+done
+
+ARCHIVE_FILES_SUFFIXES=(tar gz zip 7z)
 for suffix in ${ARCHIVE_FILES_SUFFIXES[@]}; do
     alias -s "$suffix"=file-roller
 done
@@ -133,7 +138,8 @@ alias tmp='cd $(mktemp -d)'
 # Watch
 # -d Highlight the differences between successive updates.
 # -c Interpret ANSI color and style sequences.
-alias watch='watch -dc'
+alias watch='watch -c'
+alias watchd='watch -d'
 
 # Stop noisy hard drive
 alias ftg='sudo hdparm -Y /dev/sda && sudo hdparm -C /dev/sda'

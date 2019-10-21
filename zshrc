@@ -214,7 +214,7 @@ ZSH_CUSTOM="$HOME/dotfiles/zsh_custom"
 # Hide username in prompt
 DEFAULT_USER="$USER"
 
-plugins=(httpie gitfast git-extras rsync golang kubectl docker docker-compose helm man terraform)
+plugins=(httpie gitfast copybuffer copydir rsync golang kubectl docker docker-compose helm man terraform)
 
 source $ZSH/oh-my-zsh.sh
 

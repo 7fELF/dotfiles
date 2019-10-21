@@ -37,6 +37,17 @@ function todo {
         | sed "s/[ \t]*\(\/\/\|#\)[ \t]*//"
 }
 
+# grep -rn and print file and line in vim '+42' format
+function grepl {
+    grep -rn $@ | sed 's/:\([0-9]*\):.*/ +\1/'
+}
+
+alias tovimline="sed 's/\([a-zA-Z0-9/.]\+\):\([0-9]\+\).*/\1 +\2/'"
+
+function vim-at-line {
+    vim $(echo $1 | tovimline)
+}
+
 # Openstack
 alias os='openstack'
 

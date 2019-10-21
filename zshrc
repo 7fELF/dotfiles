@@ -234,12 +234,14 @@ export PATH=${PATH}:${ANDROID_HOME}/tools
 
 # Golang
 export GOPATH=$HOME/repos/go
+# export GOPROXY=https://proxy.golang.org
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 export GO111MODULE=off
+
 function gopkg {
     cd $GOPATH/src/$1
 }
-
+compdef "_path_files -/ -W $GOPATH/src" gopkg
 
 # Make zsh know about hosts already accessed by SSH
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'

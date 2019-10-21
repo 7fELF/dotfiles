@@ -37,6 +37,11 @@ function todo {
         | sed "s/[ \t]*\(\/\/\|#\)[ \t]*//"
 }
 
+function zdev {
+    gopkg gitlab.com/zipops/zipops
+    hack/dev.sh "$@"
+}
+
 # grep -rn and print file and line in vim '+42' format
 function grepl {
     grep -rn $@ | sed 's/:\([0-9]*\):.*/ +\1/'

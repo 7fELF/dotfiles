@@ -84,9 +84,18 @@ prompt_context() {
   fi
 }
 
+setopt promptsubst
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' get-revision true
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr '✚'
+zstyle ':vcs_info:*' unstagedstr '●'
+zstyle ':vcs_info:*' formats ' %u%c'
+zstyle ':vcs_info:*' actionformats ' %u%c'
+
 # Git: branch/detached head, dirty status
 prompt_git() {
-
   local PL_BRANCH_CHAR
   () {
     local LC_ALL="" LC_CTYPE="en_US.UTF-8"
@@ -112,16 +121,7 @@ prompt_git() {
       mode=" >R>"
     fi
 
-    setopt promptsubst
-    autoload -Uz vcs_info
 
-    zstyle ':vcs_info:*' enable git
-    zstyle ':vcs_info:*' get-revision true
-    zstyle ':vcs_info:*' check-for-changes true
-    zstyle ':vcs_info:*' stagedstr '✚'
-    zstyle ':vcs_info:*' unstagedstr '●'
-    zstyle ':vcs_info:*' formats ' %u%c'
-    zstyle ':vcs_info:*' actionformats ' %u%c'
     vcs_info
     echo -n "${ref/refs\/heads\//$PL_BRANCH_CHAR }${vcs_info_msg_0_%% }${mode}"
   fi
@@ -165,14 +165,13 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-
-if repo=$(git rev-parse --show-toplevel 2> /dev/null); then
-  prompt_segment black white "$(basename $repo)"
-  [[ $PWD == $repo ]] || prompt_segment blue black "${PWD#$repo}"
-else
-  prompt_segment blue black "%~"
-fi
-
+  if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) = "true" ]]; then
+    repo=$(git rev-parse --show-toplevel 2> /dev/null)
+    prompt_segment black white "$(basename $repo)"
+    [[ $PWD == $repo ]] || prompt_segment blue black "${PWD#$repo}"
+  else
+    prompt_segment blue black "%~"
+  fi
 }
 
 # Virtualenv: current working virtualenv
@@ -206,7 +205,9 @@ prompt_exit_code() {
 
 ## Main prompt
 build_prompt() {
+
   RETVAL=$?
+
   prompt_status
   #prompt_virtualenv
   prompt_context
@@ -215,6 +216,7 @@ build_prompt() {
   #prompt_hg
   prompt_exit_code
   prompt_end
+
 }
 
 PROMPT='%{%f%b%k%}$(build_prompt) '

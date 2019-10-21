@@ -249,7 +249,7 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 # https://github.com/dvorka/hstr
 export HISTFILE=$HOME/.zsh_history
 export HSTR_CONFIG=hicolor
-bindkey -s "\C-r" "\eqhh\n"
+bindkey -s "\C-r" "\eqhstr\n"
 
 alias kubectl='http_proxy="" kubectl'
 alias k='kubectl'

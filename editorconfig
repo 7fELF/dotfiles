@@ -20,7 +20,7 @@ indent_size = 4
 max_line_length = 80
 tab_width = 8
 
-[*.yml]
+[*.{yml,yaml}]
 indent_style = space
 indent_size = 2
 
@@ -36,12 +36,12 @@ indent_style = tab
 tab_width = 4
 indent_size = 4
 
-[*.sh]
+[*.{sh,bash}]
 indent_style = tab
 tab_width = 4
 indent_size = 4
 
-[*.html]
+[*.{html,htm}]
 max_line_length = off
 indent_style = tab
 indent_size = 4

@@ -1,14 +1,46 @@
 [global_config]
-  enabled_plugins = CustomCommandsMenu, InactivityWatch, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, LaunchpadBugURLHandler
-  title_font = Hack Bold 12
-  title_inactive_bg_color = "#3c3836"
-  title_inactive_fg_color = "#efd9b4"
-  title_receive_bg_color = "#458588"
-  title_receive_fg_color = "#a1cbcc"
-  title_transmit_bg_color = "#cc241d"
   title_transmit_fg_color = "#f38d8e"
+  title_transmit_bg_color = "#cc241d"
+  title_receive_fg_color = "#a1cbcc"
+  title_receive_bg_color = "#458588"
+  title_inactive_fg_color = "#efd9b4"
+  title_inactive_bg_color = "#3c3836"
+  enabled_plugins = CustomCommandsMenu, InactivityWatch, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, LaunchpadBugURLHandler
   title_use_system_font = False
+  title_font = Hack Bold 10
 [keybindings]
+[profiles]
+  [[default]]
+    background_color = "#fbf1c7"
+    cursor_blink = False
+    cursor_color = "#002b36"
+    font = Hack 10
+    foreground_color = "#3c3836"
+    scrollback_lines = 10000
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    use_system_font = False
+    split_to_group = True
+  [[dark]]
+    background_color = "#282828"
+    cursor_blink = False
+    cursor_color = "#5a5350"
+    font = Hack 10
+    foreground_color = "#fbf1c7"
+    scroll_background = False
+    scrollback_lines = 10000
+    palette = "#282828:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#a89984:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
+    use_system_font = False
+    split_to_group = True
+  [[light]]
+    background_color = "#fbf1c7"
+    cursor_blink = False
+    cursor_color = "#002b36"
+    font = Hack 10
+    foreground_color = "#3c3836"
+    scrollback_lines = 10000
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    use_system_font = False
+    split_to_group = True
 [layouts]
   [[default]]
     [[[child1]]]
@@ -19,17 +51,3 @@
       parent = ""
       type = Window
 [plugins]
-[profiles]
-  [[default]]
-    background_color = "#282828"
-    background_image = None
-    cursor_blink = False
-    cursor_color = "#5a5350"
-    font = Hack 12
-    foreground_color = "#fbf1c7"
-    palette = "#282828:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#a89984:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
-    scroll_background = False
-    scroll_on_output = False
-    scrollback_lines = 10000
-    split_to_group = True
-    use_system_font = False

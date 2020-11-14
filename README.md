@@ -39,6 +39,7 @@ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 - install hstr
 - https://askubuntu.com/questions/1195373/how-do-i-apply-settings-for-the-login-screen
 - sudo cp ~/.config/monitors.xml ~gdm/.config/monitors.xml
+- install sleep.conf file
 - fix cracling audio (further test required, might not work)
   in /etc/pulse/default.pa
   -load-module module-udev-detect

@@ -2,6 +2,12 @@
 set -ex
 
 DOTFILES_FOLDER="$(dirname "$(realpath "$0")")"
+
+if [ ! -x "$(command -v apt-get)" ]; then
+  echo "Can't install packages without apt"
+  exit 1
+fi
+
 LN="ln -sf"
 
 PACKAGES=(

@@ -59,6 +59,9 @@ Plug 'romainl/vim-qf'
 " Typesript :(
 Plug 'leafgarland/typescript-vim'
 
+" Cuelang
+Plug 'jjo/vim-cue'
+
 call plug#end()
 
 " Enable 256 colors
@@ -101,7 +104,7 @@ let g:airline_theme=g:colors_name
 " GVim
 "
 " font
-set guifont=Hack\ 12
+set guifont=Hack\ 11
 "remove menu bar
 set guioptions-=m
 "remove toolbar
@@ -155,6 +158,9 @@ let g:epitech_dont_update_header = 1
 set nocompatible
 filetype off
 
+" clear search
+nnoremap <leader><space> :noh<cr>
+
 map <C-n> :NERDTreeToggle<CR>
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -163,7 +169,7 @@ let g:UltiSnipsExpandTrigger="<C-b>"
 filetype plugin indent on
 
 " Go Highlight
-let g:go_highlight_functions = 1
+let g:go_highlight_functions = 0
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
@@ -206,6 +212,7 @@ autocmd filetype go noremap <Leader>gk :GoKeyify<CR>
 autocmd filetype go noremap <Leader>j :GoDecls<CR>
 autocmd filetype go noremap <Leader>i :GoDeclsDir<CR>
 autocmd filetype go nmap <leader>b  <Plug>(go-build)
+autocmd filetype go nnoremap <leader><space> :noh<cr>:GoSameIdsClear<cr>
 
 " show the type info (|:GoInfo|) for the word under the cursor automatically
 let g:go_auto_type_info = 1
@@ -230,6 +237,10 @@ set wildignore+=*.pdf,*.o,*.obj,*.jpg,*.png
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '💡'
+
+let g:ale_linters = {
+	\ 'go': ['gopls'],
+	\}
 
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
@@ -257,16 +268,10 @@ let g:vim_markdown_folding_disabled=1
 set ignorecase
 set smartcase
 
-
 set gdefault
 set incsearch
 set showmatch
-"inoremap <right> <nop>
-"inoremap <up> <nop>
-"inoremap <down> <nop>
 set hlsearch
-" clear search
-nnoremap <leader><space> :noh<cr>
 
 " match the next brace
 nnoremap <tab> %
@@ -307,10 +312,6 @@ nnoremap gr :bprevious<cr>
 " Bdelete is a command from moll/vim-bbye
 nnoremap gd :Bdelete<cr>
 
-"inoremap <right> <nop>
-"inoremap <up> <nop>
-"inoremap <down> <nop>l :ls<CR>
-
 " Vimrc shortcuts
 nnoremap <leader>vi :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -334,7 +335,7 @@ augroup file_types
     autocmd!
     autocmd BufRead,BufNewFile *.md set filetype=markdown
     autocmd BufRead,BufNewFile *.txt set filetype=markdown
-    autocmd BufNewFile,BufRead *.less set filetype=less
+    autocmd BufRead,BufNewFile *.less set filetype=less
     autocmd BufRead,BufNewFile *.js set ft=javascript syntax=javascript
     autocmd BufRead,BufNewFile *.ts set ft=typescript syntax=typescript
     autocmd BufRead,BufNewFile *.es6 set ft=javascript syntax=javascript

@@ -80,6 +80,34 @@ wget -qO- "https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools
 # Get our zshrc back
 $LN "$DOTFILES_FOLDER/zshrc" "$HOME/.zshrc"
 
+gnome_extentions_dir="$HOME/.local/share/gnome-shell/extensions/"
+function install_extention {
+  mkdir  -p "$gnome_extentions_dir"
+
+  local zipfile="$(mktemp).zip"
+  wget "https://extensions.gnome.org/extension-data/$1.shell-extension.zip" -O "$zipfile"
+
+  local tmpdir="$(mktemp -d)"
+  unzip "$zipfile" -d "$tmpdir"
+
+  local folder_name="$(jq .uuid "$tmpdir/metadata.json" --raw-output)"
+
+  # TODO: if not installed already
+  mv "$tmpdir" "$gnome_extentions_dir/$folder_name"
+}
+
+GNOME_EXTENTIONS=(
+  # WIP: needs more testing
+  # "VitalsCoreCoding.com.v31"
+  # "unitehardpixel.eu.v40"
+  # "user-themegnome-shell-extensions.gcampax.github.com.v40"
+)
+for ext in "${GNOME_EXTENTIONS[@]}";
+do
+  install_extention "$ext"
+done
+
+
 # Load my dconf dump
 dconf load / < "$DOTFILES_FOLDER/dconf.ini"
 

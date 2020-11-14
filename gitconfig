@@ -11,7 +11,7 @@
   cilm = commit -C HEAD --reset-author
   cilmm = commit -c HEAD --reset-author
   bl = blame -w
-  df = diff -b
+  df = diff --word-diff=color
   sdf = diff -b --staged
   wdiff = diff --color-words
   swdiff = diff --color-words --staged

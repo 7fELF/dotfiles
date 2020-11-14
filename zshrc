@@ -15,6 +15,10 @@ alias morty='ssh antoine@morty.antoine.network'
 
 alias dkr='docker run -ti --rm'
 
+# export KUBECTL_EXTERNAL_DIFF=""
+
+alias which-kernel='ls /boot/ | grep vmlinuz- | sort --version-sort | grep -E "($|vmlinuz-$(uname -r))"'
+
 # Exclude vendor from tree
 alias tree='tree --noreport -F -I vendor'
 
@@ -34,6 +38,7 @@ function todo {
         --exclude-dir "node_modules" \
         --exclude-dir ".git" \
         --color=always  \
+        --binary-files=without-match \
         | sed "s/[ \t]*\(\/\/\|#\)[ \t]*//"
 }
 
@@ -130,8 +135,6 @@ alias safe-suspend='lock && sudo pm-suspend-hybrid'
 alias hibernate='lock && sudo pm-hibernate'
 
 # Docker
-alias composer='docker run --rm -u $UID:$GID -v $(pwd):/app composer/composer'
-alias php='docker run --rm -ti php:7'
 alias cleanup_docker='docker ps -aq | xargs docker rm'
 alias cleanup_docker_images='docker rmi $(docker images --quiet --filter "dangling=true")'
 alias container-ip='docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}"'
@@ -157,9 +160,6 @@ alias tmp='cd $(mktemp -d)'
 alias watch='watch -c'
 alias watchd='watch -d'
 
-# Stop noisy hard drive
-alias ftg='sudo hdparm -Y /dev/sda && sudo hdparm -C /dev/sda'
-
 # Use Vim as default editor
 export EDITOR=vim
 
@@ -175,7 +175,6 @@ export BROWSER="firefox"
 
 # Node.js
 export NODE_ENV=development
-
 # NVM Lazyload
 # https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/d5ib9fs/
 export NVM_DIR="$HOME/.nvm"
@@ -190,8 +189,6 @@ if [ -d "$NVM_DIR" ]; then
   for cmd in "${NODE_GLOBALS[@]}"; do
     eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
   done
-else
-    echo "Warning: nvm not installed! (not found in $NVM_DIR)"
 fi
 
 # Opam OCaml package manager
@@ -236,7 +233,7 @@ export PATH=${PATH}:${ANDROID_HOME}/tools
 export GOPATH=$HOME/repos/go
 # export GOPROXY=https://proxy.golang.org
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-export GO111MODULE=off
+export GO111MODULE=on
 
 function gopkg {
     cd $GOPATH/src/$1

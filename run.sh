@@ -1,5 +1,6 @@
 #!/bin/bash
-set -ex
+set -e
+# set -x
 
 DOTFILES_FOLDER="$(dirname "$(realpath "$0")")"
 
@@ -26,31 +27,42 @@ PACKAGES=(
   jq
   detox
   rename
+  wireguard-tools
 )
 
-if [ -x "$(command -v apt-get)" ]; then
-  echo "Installing packages"
-  sudo apt-get install -y "${PACKAGES[@]}"
-else
-  echo "Can't install packages without apt"
-  sleep 3
-fi
 
-$LN "$DOTFILES_FOLDER/vimrc"              "$HOME/.vimrc"
-$LN "$DOTFILES_FOLDER/tmux.conf"          "$HOME/.tmux.conf"
-$LN "$DOTFILES_FOLDER/zshrc"              "$HOME/.zshrc"
-$LN "$DOTFILES_FOLDER/editorconfig"       "$HOME/.editorconfig"
-$LN "$DOTFILES_FOLDER/gitconfig"          "$HOME/.gitconfig"
-$LN "$DOTFILES_FOLDER/vim"                "$HOME/.vim"
-$LN "$DOTFILES_FOLDER/selected_editor"    "$HOME/.selected_editor"
-$LN "$DOTFILES_FOLDER/ycm_extra_conf.py"  "$HOME/.ycm_extra_conf.py"
-$LN "$DOTFILES_FOLDER/ideavimrc"          "$HOME/.ideavimrc"
-$LN "$DOTFILES_FOLDER/Xresources"          "$HOME/.Xresources"
+echo "Installing packages"
+sudo apt-get install -y "${PACKAGES[@]}"
 
 mkdir -p "$HOME/.config/terminator/"
-$LN "$DOTFILES_FOLDER/config/terminator/config" "$HOME/.config/terminator/config"
 
-rm -rf "$HOME/.vim/autoload"
+DOTFILES=(
+"vimrc"
+"tmux.conf"
+"zshrc"
+"editorconfig"
+"gitconfig"
+"vim"
+"selected_editor"
+"ycm_extra_conf.py"
+"ideavimrc"
+"Xresources"
+"config/terminator/config"
+)
+
+for file in "${DOTFILES[@]}"
+do
+  $LN "$DOTFILES_FOLDER/$file" "$HOME/.${file}"
+  echo "Linked $DOTFILES_FOLDER/$file to $HOME/.${file}"
+done
+
+if [[ ! -f "$HOME/.vim/autoload" ]]
+then
+echo "Installing vim plug"
+
 curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
   "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-vim +PlugClean! +PlugInstall +qall && reset
+fi
+
+
+vim -E +PlugUpgrade +PlugClean! +PlugInstall +PlugUpdate +qall

@@ -1,3 +1,4 @@
+
 let mapleader = ","
 set shell=bash
 
@@ -25,7 +26,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Vastly improved Javascript indentation and syntax support in Vim.
 Plug 'pangloss/vim-javascript'
 " Asynchronous Lint Engine
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 " A code-completion engine for Vim
 Plug 'Valloric/YouCompleteMe'
 " Generates config files for YouCompleteMe
@@ -36,8 +37,10 @@ Plug 'scrooloose/nerdtree'
 Plug '7fELF/vim-deus'
 Plug 'nanotech/jellybeans.vim'
 Plug 'morhetz/gruvbox'
+" Plug 'ellisonleao/gruvbox.nvim'
 " Dark powered asynchronous unite all interfaces for Neovim/Vim8
-Plug 'Shougo/denite.nvim'
+Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+
 "  View and grep man pages in vim
 Plug 'vim-utils/vim-man'
 " Vim plugin that displays tags in a window, ordered by scope
@@ -62,7 +65,7 @@ Plug 'rodjek/vim-puppet'
 Plug 'mzlogin/vim-markdown-toc'
 " A Vim alignment plugin
 Plug 'junegunn/vim-easy-align'
-" Typesript :(
+" Typesript
 Plug 'leafgarland/typescript-vim'
 " Jenkinsfile syntax
 Plug 'martinda/Jenkinsfile-vim-syntax'
@@ -80,7 +83,88 @@ let g:indentLine_bufNameExclude = ['.*.md']
 " Clojure stuffs to edit edn
 Plug 'eraserhd/parinfer-rust'
 
+Plug 'neovim/nvim-lspconfig'
+
+Plug 'folke/trouble.nvim'
+
 call plug#end()
+
+set cmdheight=2
+
+
+lua << EOF
+  require'lspconfig'.gopls.setup{}
+  require'lspconfig'.bashls.setup{}
+  require'lspconfig'.clojure_lsp.setup{}
+  require'lspconfig'.vuels.setup{}
+  require'lspconfig'.vimls.setup{}
+  require'lspconfig'.tsserver.setup{}
+  require'lspconfig'.terraformls.setup{}
+  require'lspconfig'.rust_analyzer.setup{}
+  require'lspconfig'.pyright.setup{}
+  require'lspconfig'.puppet.setup{on_attach = on_attach}
+  require'lspconfig'.dockerls.setup{}
+  require'lspconfig'.angularls.setup{}
+  require'lspconfig'.yamlls.setup{
+  settings = {
+	  yaml = {
+		  schemas = {},
+		  },
+	  }
+  }
+  require("trouble").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+    position = "bottom", -- position of the list can be: bottom, top, left, right
+    height = 10, -- height of the trouble list when position is top or bottom
+    width = 50, -- width of the list when position is left or right
+    icons = true, -- use devicons for filenames
+    mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+    fold_open = "", -- icon used for open folds
+    fold_closed = "", -- icon used for closed folds
+    group = true, -- group results by file
+    padding = true, -- add an extra new line on top of the list
+    action_keys = { -- key mappings for actions in the trouble list
+        -- map to {} to remove a mapping, for example:
+        -- close = {},
+        close = "q", -- close the list
+        cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
+        refresh = "r", -- manually refresh
+        jump = {"<cr>", "<tab>"}, -- jump to the diagnostic or open / close folds
+        open_split = { "<c-x>" }, -- open buffer in new split
+        open_vsplit = { "<c-v>" }, -- open buffer in new vsplit
+        open_tab = { "<c-t>" }, -- open buffer in new tab
+        jump_close = {"o"}, -- jump to the diagnostic and close the list
+        toggle_mode = "m", -- toggle between "workspace" and "document" diagnostics mode
+        toggle_preview = "P", -- toggle auto_preview
+        hover = "K", -- opens a small popup with the full multiline message
+        preview = "p", -- preview the diagnostic location
+        close_folds = {"zM", "zm"}, -- close all folds
+        open_folds = {"zR", "zr"}, -- open all folds
+        toggle_fold = {"zA", "za"}, -- toggle fold of current file
+        previous = "k", -- preview item
+        next = "j" -- next item
+    },
+    indent_lines = true, -- add an indent guide below the fold icons
+    auto_open = false, -- automatically open the list when you have diagnostics
+    auto_close = false, -- automatically close the list when you have no diagnostics
+    auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
+    auto_fold = false, -- automatically fold a file trouble list at creation
+    auto_jump = {"lsp_definitions"}, -- for the given modes, automatically jump if there is only a single result
+    signs = {
+        -- icons / text used for a diagnostic
+        error = "❌",
+        warning = "⚠️",
+        hint = "💡",
+        information = "ℹ️",
+        other = "🤙"
+    },
+    use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
+  }
+EOF
+
+
 
 " " Enable 256 colors
 set t_Co=256
@@ -188,10 +272,11 @@ nnoremap ; :
 vnoremap // y/<C-R>"<CR>
 
 nnoremap <Leader>t :Tagbar<CR>
+nnoremap <Leader>l :TagbarShowTag<CR>
+let g:tagbar_autoshowtag = 1
 
 
-
-vnoremap <Leader>g :GBrowse!<CR>
+vnoremap <Leader>g :GBrowse<CR>
 
 "number of forgivable mistakes
 set undolevels=1000
@@ -216,14 +301,16 @@ let g:UltiSnipsExpandTrigger="<C-b>"
 filetype plugin indent on
 
 " Go Highlight
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_types = 1
-let g:go_highlight_extra_types = 1
+let g:go_highlight_functions = 0
+let g:go_highlight_methods = 0
+let g:go_highlight_structs = 0
+let g:go_highlight_operators = 0
+let g:go_highlight_build_constraints = 0
+let g:go_highlight_types = 0
+let g:go_highlight_extra_types = 0
 let g:go_highlight_fields = 0
+
+let g:go_diagnostics_enabled = 0
 
 " YCM
 let g:ycm_add_preview_to_completeopt = 1
@@ -245,8 +332,8 @@ nnoremap <leader>n :cclose<CR>
 
 
 
-let g:go_guru_scope = ["."]
-let g:go_auto_sameids = 1
+" let g:go_guru_scope = ["."]
+let g:go_auto_sameids = 40
 
 autocmd filetype go noremap <Leader>gd :GoDef<CR>
 autocmd filetype go noremap <Leader>gt :GoDefPop<CR>
@@ -256,14 +343,14 @@ autocmd filetype go noremap <Leader>gc :GoCallers<CR>
 autocmd filetype go noremap <Leader>gb :GoFill<CR>
 autocmd filetype go noremap <Leader>ge :GoIfErr<CR>
 autocmd filetype go noremap <Leader>gk :GoKeyify<CR>
-autocmd filetype go noremap <Leader>j :GoDecls<CR>
+autocmd filetype go noremap <Leader>o :GoDecls<CR>
 autocmd filetype go noremap <Leader>i :GoDeclsDir<CR>
 autocmd filetype go nmap <leader>b  <Plug>(go-build)
 
 " show the type info (|:GoInfo|) for the word under the cursor automatically
 let g:go_auto_type_info = 1
 set updatetime=100
-" let g:go_info_mode = 'guru'
+let g:go_def_mode='gopls'
 let g:go_info_mode = 'gopls'
 
 " Auto lint on save
@@ -271,6 +358,8 @@ let g:qf_auto_open_quickfix = 0
 let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'errcheck']
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_command = "gopls"
+let g:go_gopls_staticcheck = 1
 let g:go_jump_to_error = 0
 
 set modelines=0
@@ -319,7 +408,7 @@ set showmatch
 "inoremap <down> <nop>
 set hlsearch
 " clear search
-nnoremap <leader><space> :noh<cr>
+nnoremap <leader><space> :noh<cr>:GoSameIdsClear<cr>
 
 " match the next brace
 nnoremap <tab> %
@@ -397,6 +486,7 @@ augroup file_types
     autocmd BufRead,BufNewFile *.jade set ft=jade
     autocmd BufRead,BufNewFile *.eyaml set ft=yaml syntax=yaml
     autocmd BufRead,BufNewFile *.warp set ft=clojure syntax=clojure
+    autocmd BufRead,BufNewFile *.tftpl set ft=hcl
 augroup END
 
 " Whitespace fixes
@@ -433,15 +523,16 @@ autocmd BufWritePre * %s/\s\+$//e
 " preserve clipboard on exit
 autocmd VimLeave * call system("xsel -ib", getreg('+'))
 
-let g:tagbar_type_go = {
-      \ 'ctagstype' : 'go',
-      \ 'kinds'     : [ 'p:package', 'i:imports:1', 'c:constants', 'v:variables', 't:types', 'n:interfaces', 'w:fields', 'e:embedded', 'm:methods', 'r:constructor', 'f:functions' ],
-      \ 'sro' : '.',
-      \ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
-      \ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
-      \ 'ctagsbin'  : 'gotags',
-      \ 'ctagsargs' : '-sort -silent'
-      \ }
+" https://github.com/preservim/tagbar/wiki#google-go
+" let g:tagbar_type_go = {
+"       \ 'ctagstype' : 'go',
+"       \ 'kinds'     : [ 'p:package', 'i:imports:1', 'c:constants', 'v:variables', 't:types', 'n:interfaces', 'w:fields', 'e:embedded', 'm:methods', 'r:constructor', 'f:functions' ],
+"       \ 'sro' : '.',
+"       \ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
+"       \ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
+"       \ 'ctagsbin'  : 'gotags',
+"       \ 'ctagsargs' : '-sort -silent'
+"       \ }
 
 
 " let g:indentLine_char = '⦙'
@@ -451,3 +542,13 @@ set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
 
 " https://stackoverflow.com/questions/40601818/vim-displays-json-file-without-any-quotes
 let g:vim_json_conceal=0
+
+
+let g:vmt_fence_text = 'TOC'
+let g:vmt_fence_closing_text = '/TOC'
+
+" autocmd FileType go setlocal syntax=off
+
+let g:terraform_fmt_on_save = 1
+
+command! -buffer Zprint  %!./zprint-this

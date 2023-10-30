@@ -36,54 +36,22 @@ mkdir -p "$HOME/Downloads" "$HOME/repos" "$HOME/Videos"
 $LN "$DOTFILES_FOLDER/config/user-dirs.dirs" "$HOME/.config/user-dirs.dirs"
 rm -d -f "$HOME/Desktop" "$HOME/Music" "$HOME/Public" "$HOME/Templates" "$HOME/Pictures" "$HOME/Documents"
 
-"$DOTFILES_FOLDER/scripts/dropbox.sh"
-
-# keeagent PPA
-sudo add-apt-repository --yes ppa:dlech/keepass2-plugins
-# hh PPA
-sudo add-apt-repository --yes ppa:ultradvorka/ppa
-# nnn PPA
-sudo add-apt-repository --yes ppa:twodopeshaggy/jarun
-# Handbrake PPA
-sudo add-apt-repository --yes ppa:stebbins/handbrake-releases
-# Firefox beta
-sudo add-apt-repository --yes ppa:mozillateam/firefox-next
-# Upstream vim
-sudo add-apt-repository --yes ppa:jonathonf/vim
-# Git
-sudo add-apt-repository --yes ppa:git-core/ppa
-
 
 sudo apt-get update
 
 # Install a few packages
 PACKAGES=(
   zsh
+  xsel
   terminator
-  redshift
   vlc
   firefox
   vim
-  vim-gtk
-  python-pip
-  youtube-dl
-  ffmpeg
-  handbrake-gtk
-  handbrake-cli
-  keepass2
   xdotool
-  keepass2-plugin-keeagent
-  hh
-  nnn
   gparted
-  screenfetch
 )
 
 sudo apt-get install -y "${PACKAGES[@]}"
-
-# Autostart redshift
-mkdir -p "$HOME/.config/autostart/"
-$LN "$DOTFILES_FOLDER/redshift.desktop" "$HOME/.config/autostart/"
 
 # Set zsh default shell
 sudo chsh "$USER" -s "$(which zsh)"
@@ -99,17 +67,4 @@ wget -qO- "https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools
 # Get our zshrc back
 $LN "$DOTFILES_FOLDER/zshrc" "$HOME/.zshrc"
 
-# Load my dconf dump
-dconf load / < "$DOTFILES_FOLDER/dconf.ini"
-
-# Set a Wallpaper
-WALLPAPER_URL="https://i.imgur.com/7M4d4bw.jpg"
-if [ ! -f "$HOME/w.jpg" ]; then
-  wget "$WALLPAPER_URL" -O "$HOME/w.jpg"
-fi
-gsettings set org.gnome.desktop.background picture-uri "file://$HOME/w.jpg"
-gsettings set org.gnome.settings-daemon.plugins.background active true
-
-# Remove devices from unity launcher
-"$DOTFILES_FOLDER"/ubuntu_remove_devices_from_launcher.sh
 

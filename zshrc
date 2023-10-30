@@ -1,4 +1,6 @@
 # zmodload zsh/zprof
+#
+#
 
 # Aliases
 function p {
@@ -9,14 +11,27 @@ function p {
         ping $@
     fi
 }
-function diff { git diff --no-index $1 $2 }
 
 alias morty='ssh antoine@morty.antoine.network'
 
 alias dkr='docker run -ti --rm'
 
+alias tf=terraform
+
 # Exclude vendor from tree
 alias tree='tree --noreport -F -I vendor'
+
+function split-ssh {
+for h in "${@}"
+do
+    tmux split-window "ssh $h"
+    tmux select-layout even-vertical
+done
+tmux setw synchronize-panes on
+exit
+}
+
+
 
 ## cd git repo root directory
 alias repo_root='git rev-parse --show-toplevel'
@@ -29,18 +44,34 @@ function todo {
     else
         query="TODO($1)"
     fi
+
+    local gflags
+    gflag=${2:---color=always}
+
     grep -rn -I "$query" \
         --exclude-dir "vendor" \
         --exclude-dir "node_modules" \
+        --exclude-dir ".terraform" \
         --exclude-dir ".git" \
-        --color=always  \
+        "${gflag}" \
         | sed "s/[ \t]*\(\/\/\|#\)[ \t]*//"
+}
+
+function ssl_crt {
+  for crt in $(grep -nH 'BEGIN CERT' "${1}" | cut -d: -f1,2); do
+    echo "--"
+    sed -n "${crt#*:},\${/BEGIN CERT/,\${p;/END CERT/q}}" "${crt%:*}" \
+    | openssl x509 -noout -issuer -subject -dates
+  done
 }
 
 function zdev {
     gopkg gitlab.com/zipops/zipops
     hack/dev.sh "$@"
 }
+
+alias vim=nvim
+alias vi=nvim
 
 # grep -rn and print file and line in vim '+42' format
 function grepl {
@@ -66,14 +97,16 @@ function whoseport {
 alias myip='curl --silent https://api.myip.com/ | jq .ip --raw-output'
 
 # VIM
-if which gvim > /dev/null; then
-    VIM_SERVER_NAME='myserver'
-    alias vim='gvim --servername $VIM_SERVER_NAME'
-    alias v='gvim --servername $VIM_SERVER_NAME --remote'
-else
-    alias v='vim'
-fi
+# if which gvim > /dev/null; then
+#     VIM_SERVER_NAME='myserver'
+#     alias vim='gvim --servername $VIM_SERVER_NAME'
+#     alias v='gvim --servername $VIM_SERVER_NAME --remote'
+# else
+#     alias v='vim'
+# fi
 alias vdiff='vim -d'
+# TODO
+# https://github.com/neovim/neovim/wiki/Installing-Neovim#ubuntu
 
 # Git
 function watchrepo {
@@ -110,6 +143,8 @@ done
 # Substituted anywhere on a line.
 alias -g G='|grep'
 alias -g W='while :; do'
+alias -g GH='github.com'
+alias -g NOTF='--exclude-dir=.terraform'
 
 # Youtube-dl
 alias yd='youtube-dl \
@@ -154,14 +189,15 @@ alias tmp='cd $(mktemp -d)'
 # Watch
 # -d Highlight the differences between successive updates.
 # -c Interpret ANSI color and style sequences.
-alias watch='watch -c'
-alias watchd='watch -d'
+# space at the end allows to use aliases in watch
+alias watch='watch -c '
+alias watchd='watch -d '
 
 # Stop noisy hard drive
 alias ftg='sudo hdparm -Y /dev/sda && sudo hdparm -C /dev/sda'
 
 # Use Vim as default editor
-export EDITOR=vim
+export EDITOR=nvim
 
 # Use vim as man pager: http://vim.wikia.com/wiki/Using_vim_as_a_man-page_viewer_under_Unix
 export MANPAGER="/bin/sh -c \"col -b -x | \
@@ -175,33 +211,13 @@ export BROWSER="firefox"
 
 # Node.js
 export NODE_ENV=development
-
-# NVM Lazyload
-# https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/d5ib9fs/
-export NVM_DIR="$HOME/.nvm"
-
-if [ -d "$NVM_DIR" ]; then
-  declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
-  NODE_GLOBALS+=("node" "nvm")
-
-  load_nvm () {
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-  }
-  for cmd in "${NODE_GLOBALS[@]}"; do
-    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
-  done
-else
-    echo "Warning: nvm not installed! (not found in $NVM_DIR)"
-fi
-
-# Opam OCaml package manager
-. $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+export PATH="/usr/local/lib/nodejs/node-v16.16.0-linux-x64/bin:$PATH"
 
 alias json='jq'
 
 function loop {
-  echo "→ while :; do $@; done"
-  while :; do eval $@; done
+    echo "→ while :; do $@; done"
+    while :; do eval $@; done
 }
 
 # robbyrussell/oh-my-zsh
@@ -214,7 +230,7 @@ ZSH_CUSTOM="$HOME/dotfiles/zsh_custom"
 # Hide username in prompt
 DEFAULT_USER="$USER"
 
-plugins=(httpie gitfast copybuffer copydir rsync golang kubectl docker docker-compose helm man terraform)
+plugins=(httpie gitfast copybuffer copypath rsync golang kubectl docker docker-compose helm man terraform gh)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -224,27 +240,23 @@ alias termbin='ncat termbin.com 9999'
 # Use Ctrl-U Remove everything before cursor
 bindkey \^U backward-kill-line
 
-# Java
-export PATH="/usr/lib/jvm/jdk1.8.0/bin:$PATH"
+# Java bien et toi ?
+export PATH="/usr/lib/jvm/jdk-20/bin:/usr/lib/jvm/jdk1.8.0/bin:$PATH"
 
 # Android
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
- export PATH="$PATH:/opt/flutter/bin"
+export PATH="$PATH:/opt/flutter/bin"
 
 # Golang
-export GOPATH=$HOME/repos/go
-# export GOPROXY=https://proxy.golang.org
+export GOPATH=$HOME/repos
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-export GO111MODULE=off
+export GO111MODULE=on
 
 function gopkg {
     cd $GOPATH/src/$1
 }
 compdef "_path_files -/ -W $GOPATH/src" gopkg
-
-# Make zsh know about hosts already accessed by SSH
-zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 # https://github.com/dvorka/hstr
 export HISTFILE=$HOME/.zsh_history
@@ -253,5 +265,11 @@ bindkey -s "\C-r" "\eqhstr\n"
 
 alias kubectl='http_proxy="" kubectl'
 alias k='kubectl'
+export PATH="${PATH}:${HOME}/.krew/bin"
+
+#unalias diff
+function diff { git diff --no-index $1 $2 }
+
+# export PATH="${PATH}:$HOME/repos/src/github.com/puppetlabs/puppet-editor-services"
 
 # zprof

@@ -11,7 +11,8 @@
   cilm = commit -C HEAD --reset-author
   cilmm = commit -c HEAD --reset-author
   bl = blame -w
-  df = diff -b
+  df = diff -b --word-diff=color
+  sw = show -b --word-diff=color
   sdf = diff -b --staged
   wdiff = diff --color-words
   swdiff = diff --color-words --staged
@@ -35,7 +36,7 @@
   mlog = !git log --committer=\"`git me`\"
 
 # update current branch
-  update = !sh -c 'git fetch origin && git rebase -p origin/${1-master}' -
+  update = !sh -c 'git fetch origin && git rebase -r origin/${1-master}' -
 
 # creates a diff of current branch against supplied branch, usage: git export-branch [refbranch]
   branch-name = !git for-each-ref --format='%(refname:short)' `git symbolic-ref HEAD`
@@ -122,8 +123,9 @@
   autocrlf = input
   ignorecase = false
   whitespace = cr-at-eol
-  editor = vim
+  editor = nvim
   pager = less -x4
+  excludesFile = ~/.gitignore
 
 [push]
   default = tracking
@@ -146,7 +148,7 @@
   lg1 = !"git lg2-specific --all"
   lg2 = !"git lg3-specific --all"
 
-  lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+  lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(black)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
   lg2-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
   lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
 
@@ -171,4 +173,6 @@
 
 [user]
   name = Antoine Baudrand
-  email = antoine.baudrand@epitech.eu
+  email = 7fELF@users.noreply.github.com
+[url "git@github.com:"]
+	insteadOf = https://github.com/

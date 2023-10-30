@@ -24,6 +24,18 @@ tab_width = 8
 indent_style = space
 indent_size = 2
 
+[*.yaml]
+indent_style = space
+indent_size = 2
+
+[*.yaml.erb]
+indent_style = space
+indent_size = 2
+
+[*.pp]
+indent_style = space
+indent_size = 2
+
 [*.proto]
 indent_style = space
 indent_size = 2
@@ -48,3 +60,17 @@ indent_size = 4
 
 [Makefile]
 indent_style = tab
+
+[*.mk]
+indent_style = tab
+
+[rules]
+indent_style = tab
+
+[*.groovy]
+indent_style = space
+indent_size = 2
+
+
+[*.py]
+indent_style = space

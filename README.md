@@ -14,6 +14,13 @@ wget -qO- https://raw.githubusercontent.com/7fELF/dotfiles/master/install.sh | s
 ```
 
 ## TODO
+
+computer specific *rc file
+shell independent configuration (alias&functions)
+separate text&gui config (to setup a server for instance)
+make a nice CLI
+declarative config? cue?
+
 ### Vim
 - `let g:gruvbox_italic = 0`
 - Install Go

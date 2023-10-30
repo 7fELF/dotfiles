@@ -1,35 +1,83 @@
 [global_config]
-  enabled_plugins = CustomCommandsMenu, InactivityWatch, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, LaunchpadBugURLHandler
-  title_font = Hack Bold 12
-  title_inactive_bg_color = "#3c3836"
-  title_inactive_fg_color = "#efd9b4"
-  title_receive_bg_color = "#458588"
-  title_receive_fg_color = "#a1cbcc"
-  title_transmit_bg_color = "#cc241d"
   title_transmit_fg_color = "#f38d8e"
+  title_transmit_bg_color = "#cc241d"
+  title_receive_fg_color = "#a1cbcc"
+  title_receive_bg_color = "#458588"
+  title_inactive_fg_color = "#efd9b4"
+  title_inactive_bg_color = "#3c3836"
+  inactive_color_offset = 0.9545454545454546
+  enabled_plugins = CustomCommandsMenu, InactivityWatch, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, LaunchpadBugURLHandler
+  suppress_multiple_term_dialog = True
   title_use_system_font = False
+  title_font = Hack Bold 11
 [keybindings]
+  close_term = <Primary><Shift><Alt>w
+[profiles]
+  [[default]]
+    background_color = "#fcf4dc"
+    background_darkness = 0.04
+    cursor_blink = False
+    cursor_color = "#536870"
+    font = Hack 10
+    foreground_color = "#000000"
+    scrollback_lines = 1000000
+    palette = "#151617:#c94c22:#85981c:#b4881d:#2e8bce:#d13a82:#32a198:#cccccc:#5c3566:#bd3613:#738a04:#a57705:#2176c7:#c61c6f:#259286:#5c3566"
+    custom_command = tmux
+    use_system_font = False
+  [[light]]
+    background_color = "#fdf6e3"
+    cursor_blink = False
+    cursor_color = "#aaaaaa"
+    font = Hack 10
+    foreground_color = "#657b83"
+    scroll_background = False
+    scrollback_lines = 10000
+    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+    use_system_font = False
+    split_to_group = True
+  [[dark]]
+    background_color = "#282828"
+    cursor_blink = False
+    cursor_color = "#5a5350"
+    font = Hack 10
+    foreground_color = "#fbf1c7"
+    scroll_background = False
+    scrollback_lines = 10000
+    palette = "#fbf1c7:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#7c6f64:#928374:#9d0006:#79740e:#b57614:#076678:#8f3f71:#427b58:#3c3836"
+    use_system_font = False
+    split_to_group = True
+  [[Man Page]]
+    background_color = "#fef49c"
+    cursor_blink = False
+    cursor_color = "#7f7f7f"
+    font = Hack 10
+    foreground_color = "#000000"
+    palette = "#000000:#cc0000:#00a600:#999900:#0000b2:#b200b2:#00a6b2:#cccccc:#666666:#e50000:#00d900:#e5e500:#0000ff:#e500e5:#00e5e5:#e5e5e5"
+    use_system_font = False
+  [[Violet Light]]
+    background_color = "#fcf4dc"
+    cursor_blink = False
+    cursor_color = "#536870"
+    font = Hack 10
+    foreground_color = "#000000"
+    palette = "#151617:#c94c22:#85981c:#b4881d:#2e8bce:#d13a82:#32a198:#fcf4dc:#5c3566:#bd3613:#738a04:#a57705:#2176c7:#c61c6f:#259286:#5c3566"
+    use_system_font = False
+  [[Violet Dark]]
+    background_color = "#1c1d1f"
+    cursor_blink = False
+    cursor_color = "#708284"
+    font = Hack 10
+    foreground_color = "#708284"
+    palette = "#56595c:#c94c22:#85981c:#b4881d:#2e8bce:#d13a82:#32a198:#c9c6bd:#2e3436:#bd3613:#738a04:#a57705:#2176c7:#c61c6f:#259286:#c9c6bd"
+    use_system_font = False
 [layouts]
   [[default]]
     [[[child1]]]
       parent = window0
       profile = default
       type = Terminal
+      directory = ""
     [[[window0]]]
       parent = ""
       type = Window
 [plugins]
-[profiles]
-  [[default]]
-    background_color = "#282828"
-    background_image = None
-    cursor_blink = False
-    cursor_color = "#5a5350"
-    font = Hack 12
-    foreground_color = "#fbf1c7"
-    palette = "#282828:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#a89984:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
-    scroll_background = False
-    scroll_on_output = False
-    scrollback_lines = 10000
-    split_to_group = True
-    use_system_font = False

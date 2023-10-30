@@ -182,6 +182,13 @@ prompt_virtualenv() {
   fi
 }
 
+prompt_tf_workspace() {
+  local ws="$(terraform workspace show)"
+  if [[ $ws != "default" ]]; then
+    prompt_segment black white "${ws}"
+  fi
+}
+
 # Status:
 # - was there an error
 # - am I root
@@ -213,6 +220,7 @@ build_prompt() {
   prompt_context
   prompt_dir
   prompt_git
+  prompt_tf_workspace
   #prompt_hg
   prompt_exit_code
   prompt_end
